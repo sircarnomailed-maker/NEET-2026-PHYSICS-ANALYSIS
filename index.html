@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calibre Edge — NEET 2026 Physics Deep Analysis</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;0,900;1,400;1,600;1,700&family=Outfit:wght@200;300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#060608;--bg2:#09090d;--bg3:#0d0d12;--bg4:#111118;--bg5:#161620;
+  --gold:#c9a84c;--gold-lt:#e8cc80;--gold-dk:#8b6a1a;--gold-pale:#f5ead0;
+  --goldg:linear-gradient(135deg,#f0d060 0%,#c9a84c 45%,#8b6a1a 100%);
+  --goldg-h:linear-gradient(135deg,#fff5cc 0%,#f0d060 40%,#c9a84c 100%);
+  --gold-glow:rgba(201,168,76,.22);
+  --border:rgba(201,168,76,.08);--border2:rgba(201,168,76,.18);--border3:rgba(201,168,76,.35);
+  --txt:#f0ebe0;--txt2:#c8bea4;--muted:#9e9880;--dim:#4a4438;
+  --green:#5dba8e;--red:#ef4444;--blue:#5b8fd4;--purple:#a87fd4;--orange:#e8924a;
+  --ease-out:cubic-bezier(.22,1,.36,1);--ease-bounce:cubic-bezier(.34,1.56,.64,1);
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--txt);overflow-x:hidden;font-size:16px}
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--gold-dk);border-radius:99px}
+
+/* BACKGROUND */
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+  background-image:radial-gradient(circle,rgba(201,168,76,.10) 1px,transparent 1px);
+  background-size:34px 34px;opacity:.16;
+  mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,black 40%,transparent 100%);
+  -webkit-mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,black 40%,transparent 100%)}
+.orb{position:fixed;border-radius:50%;filter:blur(160px);pointer-events:none;z-index:0}
+.o1{width:600px;height:600px;top:-200px;left:-150px;background:radial-gradient(circle,rgba(201,168,76,.07),transparent 70%)}
+.o2{width:500px;height:500px;top:40%;right:-150px;background:radial-gradient(circle,rgba(168,127,212,.05),transparent 70%)}
+.o3{width:400px;height:400px;bottom:-80px;left:20%;background:radial-gradient(circle,rgba(91,143,212,.05),transparent 70%)}
+
+/* STICKY TELEGRAM */
+#tg-sticky{position:fixed;bottom:24px;right:20px;z-index:999;
+  display:flex;align-items:center;gap:10px;
+  background:linear-gradient(135deg,#0088cc,#005f9e);
+  border:1px solid rgba(0,136,204,.5);
+  padding:12px 20px;cursor:pointer;
+  box-shadow:0 8px 32px rgba(0,136,204,.3);
+  text-decoration:none;transition:all .25s;animation:tgPulse 2.5s infinite}
+#tg-sticky:hover{transform:translateY(-2px);box-shadow:0 12px 40px rgba(0,136,204,.45)}
+#tg-sticky svg{width:18px;height:18px;fill:#fff;flex-shrink:0}
+#tg-sticky span{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#fff;white-space:nowrap}
+@keyframes tgPulse{0%,100%{box-shadow:0 8px 32px rgba(0,136,204,.3)}50%{box-shadow:0 8px 40px rgba(0,136,204,.55)}}
+@media(max-width:480px){#tg-sticky span{display:none}#tg-sticky{padding:12px}}
+
+/* NAVBAR */
+.navbar{position:sticky;top:0;z-index:500;background:rgba(6,6,8,.94);backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border2);padding:0 28px;
+  display:flex;align-items:center;justify-content:space-between;height:54px}
+.nav-brand{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:700;
+  letter-spacing:4px;text-transform:uppercase;
+  background:var(--goldg);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.nav-sub{font-family:'JetBrains Mono',monospace;font-size:7px;letter-spacing:3px;text-transform:uppercase;color:var(--muted)}
+.nav-links{display:flex;gap:4px;flex-wrap:wrap}
+.nav-link{font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:1.5px;text-transform:uppercase;
+  color:var(--muted);padding:5px 9px;border:1px solid var(--border);text-decoration:none;transition:all .2s}
+.nav-link:hover{color:var(--gold);border-color:var(--border2)}
+@media(max-width:700px){.nav-links{display:none}}
+
+/* HERO */
+.hero{position:relative;z-index:1;padding:70px 24px 60px;text-align:center;border-bottom:1px solid var(--border);overflow:hidden}
+.hero::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:300px;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.hero-tag{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:5px;text-transform:uppercase;color:var(--muted);margin-bottom:22px;display:flex;align-items:center;justify-content:center;gap:14px}
+.hero-tag::before,.hero-tag::after{content:'';display:block;width:44px;height:1px;background:var(--border3)}
+.brand-row{display:flex;align-items:center;justify-content:center;gap:20px;margin-bottom:26px}
+.brand-diamond{width:50px;height:50px;background:var(--goldg);clip-path:polygon(50% 0%,100% 50%,50% 100%,0% 50%);box-shadow:0 0 30px var(--gold-glow);flex-shrink:0}
+.brand-name{font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:700;letter-spacing:6px;text-transform:uppercase;background:var(--goldg);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;display:block}
+.brand-tagline{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-top:5px;display:block}
+.hero-title{font-family:'Cormorant Garamond',serif;font-size:clamp(30px,5.5vw,58px);font-weight:900;line-height:1.08;margin-bottom:10px}
+.title-white{display:block;color:#fff}
+.title-gold{display:block;font-style:italic;background:var(--goldg-h);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-sub{font-size:15px;font-weight:300;color:var(--txt2);max-width:500px;margin:0 auto 28px;line-height:1.9}
+.hero-verdict{display:inline-block;background:rgba(239,68,68,.06);border:1px solid rgba(239,68,68,.25);border-left:3px solid var(--red);padding:16px 24px;max-width:620px;text-align:left}
+.verdict-label{font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:3px;text-transform:uppercase;color:#f87171;margin-bottom:8px}
+.verdict-text{font-family:'Outfit',sans-serif;font-size:14px;color:var(--txt2);line-height:1.8}
+.verdict-text strong{color:var(--txt);font-weight:600}
+
+/* SECTION */
+section{position:relative;z-index:1;padding:58px 28px;border-bottom:1px solid var(--border)}
+.sec-hd{display:flex;align-items:center;gap:14px;margin-bottom:36px}
+.sec-num{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:3px;color:var(--gold);background:rgba(201,168,76,.08);border:1px solid var(--border2);padding:4px 10px;flex-shrink:0}
+.sec-title{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:700;color:var(--txt)}
+.sec-line{flex:1;height:1px;background:linear-gradient(90deg,var(--border2),transparent)}
+.sec-tease{margin-top:28px;padding:14px 18px;background:rgba(201,168,76,.04);border:1px dashed rgba(201,168,76,.2);font-family:'Outfit',sans-serif;font-size:13px;color:var(--muted);text-align:center;cursor:pointer;transition:all .2s}
+.sec-tease:hover{color:var(--gold-lt);border-color:rgba(201,168,76,.4)}
+
+/* WHAT HAPPENED SECTION */
+.story-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-bottom:28px}
+.story-card{padding:24px 20px;border:1px solid var(--border);background:var(--bg4);position:relative;overflow:hidden}
+.story-card::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%}
+.sc-red::before{background:var(--red)}.sc-gold::before{background:var(--gold)}.sc-green::before{background:var(--green)}.sc-blue::before{background:var(--blue)}
+.sc-icon{font-size:24px;margin-bottom:12px;display:block}
+.sc-label{font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.sc-val{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700;color:var(--txt);margin-bottom:6px}
+.sc-body{font-family:'Outfit',sans-serif;font-size:13px;color:var(--txt2);line-height:1.7}
+.alert-box{background:rgba(239,68,68,.05);border:1px solid rgba(239,68,68,.2);padding:18px 22px;margin-bottom:20px}
+.alert-title{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:#f87171;margin-bottom:8px}
+.alert-body{font-family:'Outfit',sans-serif;font-size:14px;color:var(--txt2);line-height:1.8}
+.alert-body strong{color:var(--txt)}
+
+/* STUDENT FILTER */
+.filter-wrap{text-align:center;margin-bottom:40px}
+.filter-label{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:4px;text-transform:uppercase;color:var(--muted);margin-bottom:16px}
+.filter-btns{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
+.f-btn{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;padding:11px 22px;border:1px solid var(--border2);color:var(--muted);background:transparent;cursor:pointer;transition:all .25s}
+.f-btn:hover{color:var(--txt2);border-color:var(--border3)}
+.f-btn.active-dropper{background:rgba(168,127,212,.12);border-color:var(--purple);color:var(--purple)}
+.f-btn.active-fresher{background:rgba(93,186,142,.12);border-color:var(--green);color:var(--green)}
+.f-btn.active-average{background:rgba(201,168,76,.10);border-color:var(--gold);color:var(--gold)}
+.f-btn.active-all{background:rgba(201,168,76,.06);border-color:var(--border3);color:var(--gold-lt)}
+.filter-result{padding:22px 24px;border:1px solid var(--border2);background:var(--bg4);min-height:80px;transition:all .35s;text-align:left}
+.fr-head{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:700;margin-bottom:10px}
+.fr-body{font-family:'Outfit',sans-serif;font-size:14px;color:var(--txt2);line-height:1.8}
+.fr-tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:12px}
+.fr-tag{font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:1.5px;text-transform:uppercase;padding:5px 12px;border:1px solid var(--border2);color:var(--txt2)}
+
+/* STATS */
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px}
+.stat-card{background:var(--bg4);border:1px solid var(--border);padding:22px 18px;position:relative;overflow:hidden;transition:border-color .3s,transform .2s}
+.stat-card:hover{border-color:var(--border2);transform:translateY(-2px)}
+.stat-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px}
+.sc-g::before{background:var(--goldg)}.sc-gr::before{background:linear-gradient(90deg,var(--green),#3a9e6e)}
+.sc-re::before{background:linear-gradient(90deg,var(--red),#c03030)}.sc-bl::before{background:linear-gradient(90deg,var(--blue),#3a6faa)}
+.sc-pu::before{background:linear-gradient(90deg,var(--purple),#6a3faa)}.sc-or::before{background:linear-gradient(90deg,var(--orange),#c07030)}
+.stat-label{font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:2.5px;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.stat-val{font-family:'Cormorant Garamond',serif;font-size:46px;font-weight:700;line-height:1;margin-bottom:5px}
+.sc-g .stat-val{background:var(--goldg);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.sc-gr .stat-val{color:var(--green)}.sc-re .stat-val{color:#f87171}.sc-bl .stat-val{color:var(--blue)}.sc-pu .stat-val{color:var(--purple)}.sc-or .stat-val{color:var(--orange)}
+.stat-note{font-size:12px;color:var(--muted);line-height:1.5}
+
+/* BARS */
+.bar-section{display:grid;grid-template-columns:1fr 1fr;gap:32px}
+@media(max-width:680px){.bar-section{grid-template-columns:1fr}}
+.bar-group-title{font-family:'Cormorant Garamond',serif;font-size:19px;font-weight:700;color:var(--gold-lt);margin-bottom:18px;padding-bottom:10px;border-bottom:1px solid var(--border)}
+.bar-item{margin-bottom:13px}
+.bar-meta{display:flex;justify-content:space-between;align-items:center;margin-bottom:5px}
+.bar-name{font-size:13px;color:var(--txt2)}
+.bar-count{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:600;color:var(--gold)}
+.bar-track{height:5px;background:var(--bg5);border-radius:3px;overflow:hidden}
+.bar-fill{height:100%;border-radius:3px;width:0;transition:width 1.4s var(--ease-out)}
+.bf-gold{background:linear-gradient(90deg,#f0d060,#c9a84c)}
+.bf-grn{background:linear-gradient(90deg,#5dba8e,#3a9e6e)}
+.bf-blu{background:linear-gradient(90deg,#5b8fd4,#3a6faa)}
+.bf-zero{background:var(--dim);width:6px!important}
+.bar-zero-warn{font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:#f87171;margin-top:4px;display:flex;align-items:center;gap:5px}
+.bar-zero-warn::before{content:'⚠';font-size:10px}
+
+/* ACCORDION TABLE */
+.acc-table{width:100%;border-collapse:collapse}
+.acc-head-row th{font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);padding:10px 12px;text-align:left;border-bottom:1px solid var(--border2);white-space:nowrap}
+.acc-row{border-bottom:1px solid var(--border);cursor:pointer;transition:background .2s}
+.acc-row:hover{background:rgba(201,168,76,.03)}
+.acc-row td{padding:12px 12px;vertical-align:middle}
+.ch-name{font-size:14px;font-weight:500;color:var(--txt);display:flex;align-items:center;gap:8px}
+.ch-arrow{font-size:10px;color:var(--muted);transition:transform .3s;display:inline-block}
+.acc-row.open .ch-arrow{transform:rotate(90deg)}
+.q-big{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:700;color:var(--gold)}
+.q-big.zero{color:var(--dim);font-size:18px}
+.pill{display:inline-block;padding:2px 8px;font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:1px;border-radius:2px;margin:1px;white-space:nowrap}
+.pe{background:rgba(93,186,142,.12);color:var(--green);border:1px solid rgba(93,186,142,.2)}
+.pm{background:rgba(201,168,76,.10);color:var(--gold);border:1px solid rgba(201,168,76,.2)}
+.ph{background:rgba(239,68,68,.10);color:#f87171;border:1px solid rgba(239,68,68,.2)}
+.pt{background:rgba(168,127,212,.10);color:var(--purple);border:1px solid rgba(168,127,212,.2)}
+.pn{background:rgba(91,143,212,.10);color:var(--blue);border:1px solid rgba(91,143,212,.2)}
+.pg{background:rgba(232,146,74,.10);color:var(--orange);border:1px solid rgba(232,146,74,.2)}
+.pmatch{background:rgba(255,255,255,.06);color:var(--txt2);border:1px solid rgba(255,255,255,.1)}
+.pzero{background:rgba(255,255,255,.03);color:var(--dim);border:1px solid rgba(255,255,255,.06)}
+.acc-detail{display:none;background:var(--bg3)}
+.acc-detail td{padding:16px 20px;border-bottom:1px solid var(--border)}
+.acc-inner{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
+@media(max-width:600px){.acc-inner{grid-template-columns:1fr}}
+.ai-box{padding:12px 14px;background:var(--bg4);border:1px solid var(--border)}
+.ai-label{font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.ai-val{font-size:13px;color:var(--txt2);line-height:1.6}
+.class-div td{font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);background:var(--bg3);padding:8px 12px;border-bottom:1px solid var(--border2)}
+
+/* TRAP QUESTIONS */
+.trap-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
+.trap-card{background:var(--bg4);border:1px solid rgba(239,68,68,.2);padding:26px 22px;position:relative;overflow:hidden}
+.trap-card::after{content:'TRAP';position:absolute;top:14px;right:14px;font-family:'JetBrains Mono',monospace;font-size:7px;letter-spacing:3px;color:rgba(239,68,68,.4);border:1px solid rgba(239,68,68,.2);padding:2px 8px}
+.trap-num{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:#f87171;margin-bottom:8px}
+.trap-q{font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:600;color:var(--txt);margin-bottom:12px;line-height:1.5}
+.trap-mistake{background:rgba(239,68,68,.06);border-left:2px solid var(--red);padding:10px 14px;margin-bottom:10px}
+.trap-m-label{font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:#f87171;margin-bottom:4px}
+.trap-m-body{font-size:13px;color:var(--txt2);line-height:1.6}
+.trap-correct{background:rgba(93,186,142,.06);border-left:2px solid var(--green);padding:10px 14px}
+.trap-c-label{font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--green);margin-bottom:4px}
+.trap-c-body{font-size:13px;color:var(--txt2);line-height:1.6}
+
+/* DIFFICULTY */
+.diff-row{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:32px}
+@media(max-width:540px){.diff-row{grid-template-columns:1fr}}
+.diff-card{padding:26px 20px;text-align:center;border:1px solid var(--border);background:var(--bg4)}
+.diff-big{font-family:'Cormorant Garamond',serif;font-size:60px;font-weight:900;line-height:1}
+.diff-lbl{font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:3px;text-transform:uppercase;margin:8px 0 4px;color:var(--muted)}
+.diff-sub{font-size:12px;color:var(--muted);line-height:1.5}
+.d-easy .diff-big{color:var(--green)}.d-med .diff-big{color:var(--gold)}.d-hard .diff-big{color:#f87171}
+.type-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px}
+.type-card{background:var(--bg3);border:1px solid var(--border);padding:15px 14px;display:flex;align-items:center;gap:12px}
+.type-ico{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0}
+.type-n{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:700;line-height:1}
+.type-nm{font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-top:2px}
+
+/* 2027 PREDICTIONS */
+.pred-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.pred-card{padding:22px 20px;border:1px solid var(--border);background:var(--bg4);position:relative}
+.pred-prob{position:absolute;top:14px;right:14px;font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:1px;padding:3px 10px;border-radius:2px}
+.pp-high{background:rgba(239,68,68,.15);color:#f87171;border:1px solid rgba(239,68,68,.25)}
+.pp-med{background:rgba(201,168,76,.10);color:var(--gold);border:1px solid rgba(201,168,76,.2)}
+.pp-low{background:rgba(93,186,142,.10);color:var(--green);border:1px solid rgba(93,186,142,.2)}
+.pred-ch{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:700;color:var(--txt);margin-bottom:6px;margin-top:4px;padding-right:80px}
+.pred-why{font-size:13px;color:var(--txt2);line-height:1.7}
+.pred-tag{display:inline-block;margin-top:10px;font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;padding:3px 10px;border:1px solid var(--border2);color:var(--muted)}
+
+/* PRIORITY MATRIX */
+.matrix{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:600px){.matrix{grid-template-columns:1fr}}
+.mx-cell{padding:26px 22px;border:1px solid var(--border)}
+.mc-tl{background:rgba(93,186,142,.03);border-color:rgba(93,186,142,.22)}
+.mc-tr{background:rgba(239,68,68,.03);border-color:rgba(239,68,68,.18)}
+.mc-bl{background:rgba(201,168,76,.03);border-color:rgba(201,168,76,.16)}
+.mc-br{background:rgba(255,255,255,.015);border-color:rgba(255,255,255,.06)}
+.mx-badge{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;padding:3px 10px;border:1px solid;margin-bottom:12px}
+.mc-tl .mx-badge{background:rgba(93,186,142,.12);color:var(--green);border-color:rgba(93,186,142,.3)}
+.mc-tr .mx-badge{background:rgba(239,68,68,.10);color:#f87171;border-color:rgba(239,68,68,.25)}
+.mc-bl .mx-badge{background:rgba(201,168,76,.08);color:var(--gold);border-color:rgba(201,168,76,.2)}
+.mc-br .mx-badge{background:rgba(255,255,255,.04);color:var(--muted);border-color:rgba(255,255,255,.08)}
+.mx-title{font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:700;color:var(--txt);margin-bottom:12px}
+.mx-list{list-style:none}
+.mx-list li{font-size:13px;color:var(--txt2);padding:5px 0;border-bottom:1px solid rgba(255,255,255,.04);display:flex;justify-content:space-between;align-items:center}
+.mx-list li:last-child{border-bottom:none}
+.mx-q{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--muted)}
+
+/* TOPPER CHECKPOINT */
+.check-list{list-style:none;counter-reset:check}
+.check-item{counter-increment:check;display:flex;gap:16px;padding:18px 0;border-bottom:1px solid var(--border)}
+.check-item:last-child{border-bottom:none}
+.check-num{font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:900;color:var(--border3);flex-shrink:0;width:32px;line-height:1}
+.check-body{}
+.check-title{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:700;color:var(--gold-lt);margin-bottom:6px}
+.check-text{font-size:13px;color:var(--txt2);line-height:1.8}
+
+/* 67-SEC CHALLENGE */
+.challenge-box{background:var(--bg4);border:1px solid var(--border2);padding:32px 28px;max-width:680px;margin:0 auto}
+.ch-header{text-align:center;margin-bottom:24px}
+.ch-title{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:700;color:var(--txt);margin-bottom:6px}
+.ch-sub{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--muted)}
+.ch-question{background:var(--bg3);border:1px solid var(--border);padding:20px 18px;margin-bottom:20px;font-size:14px;color:var(--txt2);line-height:1.8}
+.ch-q-label{font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
+.ch-timer{font-family:'Cormorant Garamond',serif;font-size:56px;font-weight:900;text-align:center;color:var(--green);line-height:1;margin:16px 0;transition:color .3s}
+.ch-timer.warn{color:var(--orange)}.ch-timer.danger{color:#f87171}
+.ch-opts{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px}
+.ch-opt{padding:12px 16px;border:1px solid var(--border2);background:transparent;color:var(--txt2);font-family:'Outfit',sans-serif;font-size:14px;cursor:pointer;text-align:left;transition:all .2s}
+.ch-opt:hover{border-color:var(--border3);background:rgba(201,168,76,.04);color:var(--txt)}
+.ch-opt.correct{border-color:var(--green);background:rgba(93,186,142,.10);color:var(--green)}
+.ch-opt.wrong{border-color:var(--red);background:rgba(239,68,68,.08);color:#f87171}
+.ch-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.ch-btn{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;padding:11px 22px;border:1px solid var(--border2);color:var(--muted);background:transparent;cursor:pointer;transition:all .2s}
+.ch-btn.primary{border-color:var(--border3);color:var(--gold);background:rgba(201,168,76,.06)}
+.ch-btn:hover{color:var(--txt2);border-color:var(--border3)}
+.ch-result{display:none;margin-top:16px;padding:16px;text-align:center}
+.ch-result.show{display:block}
+.ch-result-text{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:700;margin-bottom:6px}
+.ch-explain{font-size:13px;color:var(--txt2);line-height:1.8}
+
+/* INSIGHTS */
+.ins-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}
+.ins-card{background:var(--bg3);border:1px solid var(--border);border-left:3px solid;padding:18px 16px}
+.ins-warn{border-left-color:#f87171}.ins-good{border-left-color:var(--green)}.ins-tip{border-left-color:var(--gold)}.ins-info{border-left-color:var(--blue)}
+.ins-lbl{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:3px;text-transform:uppercase;margin-bottom:8px}
+.ins-warn .ins-lbl{color:#f87171}.ins-good .ins-lbl{color:var(--green)}.ins-tip .ins-lbl{color:var(--gold)}.ins-info .ins-lbl{color:var(--blue)}
+.ins-body{font-size:13px;color:var(--txt2);line-height:1.75}
+.ins-body strong{color:var(--txt)}
+
+/* FOOTER */
+footer{position:relative;z-index:1;padding:56px 28px 36px;text-align:center}
+footer::before{content:'';display:block;width:260px;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:0 auto 44px}
+.ft-brand{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:700;letter-spacing:6px;text-transform:uppercase;background:var(--goldg);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:6px}
+.ft-tag{font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:4px;text-transform:uppercase;color:var(--muted);margin-bottom:32px}
+.ft-cta{display:inline-block;background:rgba(201,168,76,.06);border:1px solid var(--border2);padding:24px 36px;margin-bottom:32px}
+.ft-cta-title{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700;color:var(--gold-lt);margin-bottom:6px}
+.ft-cta-sub{font-size:13px;color:var(--muted);margin-bottom:14px}
+.ft-cta-btn{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);padding:11px 26px;border:1px solid var(--border3);text-decoration:none;transition:all .2s}
+.ft-cta-btn:hover{background:rgba(201,168,76,.12)}
+.social-row{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-bottom:28px}
+.soc-btn{display:flex;align-items:center;gap:8px;font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);padding:10px 18px;border:1px solid var(--border);text-decoration:none;transition:all .25s}
+.soc-btn:hover{color:var(--gold);border-color:var(--border3);background:rgba(201,168,76,.04)}
+.soc-btn svg{width:14px;height:14px;fill:currentColor;flex-shrink:0}
+.ft-copy{font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--dim)}
+
+/* LEGEND */
+.legend{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:20px}
+.leg{display:flex;align-items:center;gap:6px;font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted)}
+.leg-dot{width:8px;height:8px;border-radius:1px;flex-shrink:0}
+
+/* RESPONSIVE */
+@media(max-width:768px){section{padding:40px 16px}.hero{padding:50px 16px 44px}.brand-name{font-size:24px}}
+@media(max-width:480px){.stats-grid{grid-template-columns:repeat(2,1fr)}.diff-row{grid-template-columns:1fr}.ch-opts{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<div class="orb o1"></div><div class="orb o2"></div><div class="orb o3"></div>
+
+<!-- STICKY TELEGRAM -->
+<a id="tg-sticky" href="https://t.me/+--qGzFpibjJiN2Y1" target="_blank" rel="noopener">
+  <svg viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+  <span>Join Free Batch</span>
+</a>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div>
+    <div class="nav-brand">Calibre Edge</div>
+    <div class="nav-sub">NEET 2026 · Physics Analysis</div>
+  </div>
+  <div class="nav-links">
+    <a class="nav-link" href="#context">Context</a>
+    <a class="nav-link" href="#stats">Stats</a>
+    <a class="nav-link" href="#chapters">Chapters</a>
+    <a class="nav-link" href="#traps">Traps</a>
+    <a class="nav-link" href="#predict">2027</a>
+    <a class="nav-link" href="#matrix">Priority</a>
+    <a class="nav-link" href="#challenge">Challenge</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-tag">Calibre Edge · Exclusive Analysis · NEET 2026</div>
+  <div class="brand-row">
+    <div class="brand-diamond"></div>
+    <div>
+      <span class="brand-name">Calibre Edge</span>
+      <span class="brand-tagline">Sharpen Your Edge. Own the Exam.</span>
+    </div>
+  </div>
+  <h1 class="hero-title">
+    <span class="title-white">NEET 2026 Physics</span>
+    <span class="title-gold">Complete Deep Analysis</span>
+  </h1>
+  <p class="hero-sub">Conducted May 3. Cancelled May 14 due to paper leak. Re-exam expected June 2026. The cancelled paper — fully dissected so you walk into Re-NEET knowing exactly what NTA considers important.</p>
+  <div class="hero-verdict">
+    <div class="verdict-label">⚠ Re-NEET 2026 — Use This Analysis Now</div>
+    <div class="verdict-text"><strong>This is the leaked paper from May 3.</strong> Re-exam will have fresh questions — but the same syllabus, same chapter weightage logic, same difficulty pattern. Current Electricity dominated at 4 questions. Two chapters vanished completely. Semiconductor turned brutally hard. <strong>You have ~3 weeks. This is your map.</strong></div>
+  </div>
+</div>
+
+<!-- SECTION 0 — WHAT HAPPENED -->
+<section id="context">
+  <div class="sec-hd"><span class="sec-num">§00</span><h2 class="sec-title">What Happened — The Full Story</h2><div class="sec-line"></div></div>
+
+  <div class="alert-box">
+    <div class="alert-title">🔴 BREAKING — NEET UG 2026 Cancelled. Re-Exam Imminent.</div>
+    <div class="alert-body">
+      NEET UG 2026 was conducted on <strong>May 3, 2026.</strong> Within days, a massive paper leak scandal surfaced — a "guess paper" circulated before the exam <strong>allegedly matched 100+ questions</strong> from the actual paper, especially in Biology and Chemistry. NTA, with approval of the Government of India, <strong>officially cancelled the exam on May 14, 2026.</strong> CBI has been ordered to investigate. Multiple arrests made in Rajasthan and Maharashtra. Over <strong>22 lakh students</strong> are affected.<br><br>
+      Re-NEET date is <strong>not yet announced</strong> — expected first week of June 2026. No fresh registration required. Fee will be refunded. New admit cards will be issued.<br><br>
+      <strong>This analysis is of the May 3 cancelled paper.</strong> The re-exam will have fresh questions — but the syllabus is unchanged. The chapter patterns, difficulty levels, and topic gaps revealed here are exactly what you should be using to prepare right now.
+    </div>
+  </div>
+
+  <div class="story-grid">
+    <div class="story-card sc-red">
+      <span class="sc-icon">💥</span>
+      <div class="sc-label">What Happened</div>
+      <div class="sc-val">Paper Leaked</div>
+      <div class="sc-body">A "guess paper" matching 100+ questions from the May 3 exam circulated before the test. NTA confirmed the breach and cancelled the exam.</div>
+    </div>
+    <div class="story-card sc-gold">
+      <span class="sc-icon">⚖️</span>
+      <div class="sc-label">Government Action</div>
+      <div class="sc-val">CBI Inquiry</div>
+      <div class="sc-body">CBI ordered to investigate. Multiple suspects arrested in Rajasthan and Maharashtra. Supreme Court petition filed by FAIMA for judicial oversight.</div>
+    </div>
+    <div class="story-card sc-green">
+      <span class="sc-icon">📅</span>
+      <div class="sc-label">Re-Exam Expected</div>
+      <div class="sc-val">June 2026</div>
+      <div class="sc-body">Re-NEET likely in first week of June 2026. No re-registration. Fee refunded. Fresh admit cards will be issued. Same exam centres.</div>
+    </div>
+    <div class="story-card sc-blue">
+      <span class="sc-icon">🎯</span>
+      <div class="sc-label">What This Means For You</div>
+      <div class="sc-val">Prepare Now</div>
+      <div class="sc-body">Syllabus unchanged. Chapter patterns from this paper are your best guide. You have ~3 weeks. Every section below is your roadmap.</div>
+    </div>
+  </div>
+
+  <div class="alert-box" style="background:rgba(201,168,76,.04);border-color:rgba(201,168,76,.25);margin-top:0">
+    <div class="alert-title" style="color:var(--gold)">📌 How to Use This Analysis for Re-NEET</div>
+    <div class="alert-body">The re-exam will NOT reuse these questions. But <strong>the chapter weightage, topic patterns, difficulty balance, and the 3 absent chapters</strong> — all of this reflects what NTA considers important. Study this analysis as a blueprint for where to spend your next 3 weeks. The students who understand this paper deeply will be the students who top the re-exam.</div>
+  </div>
+
+  <div class="sec-tease" onclick="document.getElementById('stats').scrollIntoView({behavior:'smooth'})">
+    → 22 lakh students. 3 weeks. One shot. Which student type are you? Scroll down — the page will show exactly what matters for you. ↓
+  </div>
+</section>
+
+<!-- SECTION 1 — STUDENT FILTER -->
+<section id="filter">
+  <div class="sec-hd"><span class="sec-num">§01</span><h2 class="sec-title">Who Are You? Filter This Analysis.</h2><div class="sec-line"></div></div>
+  <p style="font-size:14px;color:var(--txt2);margin-bottom:28px;line-height:1.8">Every student reads this differently. Select your type below — the page will show you the most relevant strategy throughout.</p>
+
+  <div class="filter-wrap">
+    <div class="filter-label">Select Your Student Type</div>
+    <div class="filter-btns">
+      <button class="f-btn active-all" onclick="setFilter('all',this)">All Students</button>
+      <button class="f-btn" onclick="setFilter('dropper',this)">🔁 Dropper (2nd+ Attempt)</button>
+      <button class="f-btn" onclick="setFilter('fresher',this)">🌱 Fresher (1st Attempt)</button>
+      <button class="f-btn" onclick="setFilter('average',this)">📈 Stuck at 120–160</button>
+    </div>
+  </div>
+
+  <div class="filter-result" id="filterResult">
+    <div class="fr-head" style="color:var(--gold-lt)">All Students — Full Analysis Below</div>
+    <div class="fr-body">You're viewing the complete analysis. Select a student type above to see personalized focus areas, priority chapters, and strategy specific to your situation.</div>
+  </div>
+</section>
+
+<!-- SECTION 2 — STATS -->
+<section id="stats">
+  <div class="sec-hd"><span class="sec-num">§02</span><h2 class="sec-title">Quick Stats Dashboard</h2><div class="sec-line"></div></div>
+
+  <div class="stats-grid">
+    <div class="stat-card sc-g"><div class="stat-label">Total Physics Qs</div><div class="stat-val" data-target="45">0</div><div class="stat-note">25% of entire paper<br>180 total marks</div></div>
+    <div class="stat-card sc-gr"><div class="stat-label">Easy Questions</div><div class="stat-val" data-target="12">0</div><div class="stat-note">Guaranteed 48 marks<br>if attempted correctly</div></div>
+    <div class="stat-card sc-or"><div class="stat-label">Medium Questions</div><div class="stat-val" data-target="23">0</div><div class="stat-note">51% of Physics<br>Where ranks separate</div></div>
+    <div class="stat-card sc-re"><div class="stat-label">Hard Questions</div><div class="stat-val" data-target="10">0</div><div class="stat-note">Skip if unsure<br>−1 is real damage</div></div>
+    <div class="stat-card sc-pu"><div class="stat-label">Class XII Weight</div><div class="stat-val" data-target="26">0</div><div class="stat-note">58% of Physics<br>from Class XII only</div></div>
+    <div class="stat-card sc-bl"><div class="stat-label">Numericals</div><div class="stat-val" data-target="30">0</div><div class="stat-note">67% calculation based<br>Formula clarity critical</div></div>
+    <div class="stat-card sc-g"><div class="stat-label">Theory / Concept</div><div class="stat-val" data-target="11">0</div><div class="stat-note">Don't skip NCERT lines<br>24% of Physics</div></div>
+    <div class="stat-card sc-or"><div class="stat-label">Graph Based</div><div class="stat-val" data-target="4">0</div><div class="stat-note">V-T · B-r · KE graph<br>Cross-chapter skill</div></div>
+    <div class="stat-card sc-re"><div class="stat-label">Chapters Absent</div><div class="stat-val" data-target="3">0</div><div class="stat-note">Motion in Plane<br>Thermal Props · Magnetism</div></div>
+  </div>
+
+  <div class="sec-tease" onclick="document.getElementById('chapters').scrollIntoView({behavior:'smooth'})">
+    → The chapter that gave 4 questions alone — and the one chapter that surprised even 95-percentile students. Find out in the next section. ↓
+  </div>
+</section>
+
+<!-- SECTION 3 — CHAPTER BARS -->
+<section id="chapters">
+  <div class="sec-hd"><span class="sec-num">§03</span><h2 class="sec-title">Chapter-wise Weightage</h2><div class="sec-line"></div></div>
+
+  <div class="bar-section">
+    <div>
+      <div class="bar-group-title">Class XI — 19 Questions</div>
+      <div class="bar-item"><div class="bar-meta"><span class="bar-name">Units &amp; Measurement</span><span class="bar-count">3 Q</span></div><div class="bar-track"><div class="bar-fill bf-gold" data-w="75%"></div></div></div>
+      <div class="bar-item"><div class="bar-meta"><span class="bar-name">Oscillations</span><span class="bar-count">3 Q</span></div><div class="bar-track"><div class="bar-fill bf-gold" data-w="75%"></div></div></div>
+      <div class="bar-item"><div class="bar-meta"><span class="bar-name">Laws of Motion</span><span class="bar-count">2 Q</span></div><div class="bar-track"><div class="bar-fill bf-grn" data-w="50%"></div></div></div>
+      <div class="bar-item"><div class="bar-meta"><span class="bar-name">System of Particles &amp; RM</span><span class="bar-count">2 Q</span></div><div class="bar-track"><div class="bar-fill bf-grn" data-w="50%"></div></div></div>
+      <div class="bar-item"><div class="bar-meta"><span class="bar-name">Motion in Straight Line</span><span class="bar-count">2 Q</span></div><div class="bar-track"><div class="bar-fill bf-grn" data-w="50%"></div></div></div>
+      <div class="bar-item"><div class="bar-meta"><span class="bar-name">Work, Energy &amp; Power</span><span class="bar-count">1 Q</span></div><div class="bar-track"><div class="bar-fill bf-blu" data-w="25%"></div></div></div>
+      <div class="bar-item"><div class="bar-meta"><span class="bar-name">Gravitation</span><span class="bar-count">1 Q</span></div><div class="bar-track"><div class="bar-fill bf-blu" data-w="25%"></div></div></div>
+      <div class="bar-item"><div class="bar-meta"><span class="bar-name">Mech. Properties of Solids</span><span class="bar-count">1 Q</span></div><div class="bar-track"><div class="bar-fill bf-blu" data-w="25%"></div></div></div>
+      <div class="bar-item"><div class="bar-meta"><span class="bar-name">Mech. Properties of Fluids</span><span class="bar-count">1 Q</span></div><div class="bar-track"><div class="bar-fill bf-blu" data-w="25%"></div></div></div>
+      <div class="bar-item"><div class="bar-meta"><span class="bar-name">Thermodynamics</span><span class="bar-count">1 Q</span></div><div class="bar-track"><div class="bar-fill bf-blu" data-w="25%"></div></div></div>
+      <div class="bar-item"><div class="bar-meta"><span class="bar-name">Kinetic Theory</span><span class="bar-count">1 Q</span></div><div class="bar-track"><div class="bar-fill bf-blu" data-w="25%"></div></div></div>
+      <div class="bar-item"><div class="bar-meta"><span class="bar-name">Waves</span><span class="bar-count">1 Q</span></div><div class="bar-track"><div class="bar-fill bf-blu" data-w="25%"></div></div></div>
+      <div class="bar-item">
+        <div class="bar-meta"><span class="bar-name" style="color:var(--dim)">Motion in a Plane</span><span class="bar-count" style="color:#f87171">0 Q</span></div>
+        <div class="bar-track"><div class="bar-fill bf-zero"></div></div>
+        <div class="bar-zero-warn">COMPLETELY ABSENT — High 2027 Return Risk</div>
+      </div>
+      <div class="bar-item">
+        <div class="bar-meta"><span class="bar-name" style="color:var(--dim)">Thermal Properties of Matter</span><span class="bar-count" style="color:#f87171">0 Q</span></div>
+        <div class="bar-track"><div class="bar-fill bf-zero"></div></div>
+        <div class="bar-zero-warn">COMPLETELY ABSENT — Do Not Ignore for 2027</div>
+      </div>
+    </div>
+    <div>
+      <div class="bar-group-title">Class XII — 26 Questions</div>
+      <div class="bar-item"><div class="bar-meta"><span class="bar-name">Current Electricity ⭐</span><span class="bar-count">4 Q</span></div><div class="bar-track"><div class="bar-fill bf-gold" data-w="100%"></div></div></div>
+      <div class="bar-item"><div class="bar-meta"><span class="bar-name">Moving Charges &amp; Magnetism</span><span class="bar-count">3 Q</span></div><div class="bar-track"><div class="bar-fill bf-gold" data-w="75%"></div></div></div>
+      <div class="bar-item"><div class="bar-meta"><span class="bar-name">Semiconductor Electronics</span><span class="bar-count">3 Q</span></div><div class="bar-track"><div class="bar-fill bf-gold" data-w="75%"></div></div></div>
+      <div class="bar-item"><div class="bar-meta"><span class="bar-name">Electrostatic Potential &amp; Cap.</span><span class="bar-count">2 Q</span></div><div class="bar-track"><div class="bar-fill bf-grn" data-w="50%"></div></div></div>
+      <div class="bar-item"><div class="bar-meta"><span class="bar-name">Alternating Current</span><span class="bar-count">2 Q</span></div><div class="bar-track"><div class="bar-fill bf-grn" data-w="50%"></div></div></div>
+      <div class="bar-item"><div class="bar-meta"><span class="bar-name">Ray Optics</span><span class="bar-count">2 Q</span></div><div class="bar-track"><div class="bar-fill bf-grn" data-w="50%"></div></div></div>
+      <div class="bar-item"><div class="bar-meta"><span class="bar-name">Wave Optics</span><span class="bar-count">2 Q</span></div><div class="bar-track"><div class="bar-fill bf-grn" data-w="50%"></div></div></div>
+      <div class="bar-item"><div class="bar-meta"><span class="bar-name">Dual Nature of Radiation</span><span class="bar-count">2 Q</span></div><div class="bar-track"><div class="bar-fill bf-grn" data-w="50%"></div></div></div>
+      <div class="bar-item"><div class="bar-meta"><span class="bar-name">Nuclei</span><span class="bar-count">2 Q</span></div><div class="bar-track"><div class="bar-fill bf-grn" data-w="50%"></div></div></div>
+      <div class="bar-item"><div class="bar-meta"><span class="bar-name">Electric Charges &amp; Fields</span><span class="bar-count">1 Q</span></div><div class="bar-track"><div class="bar-fill bf-blu" data-w="25%"></div></div></div>
+      <div class="bar-item"><div class="bar-meta"><span class="bar-name">Electromagnetic Induction</span><span class="bar-count">1 Q</span></div><div class="bar-track"><div class="bar-fill bf-blu" data-w="25%"></div></div></div>
+      <div class="bar-item"><div class="bar-meta"><span class="bar-name">Electromagnetic Waves</span><span class="bar-count">1 Q</span></div><div class="bar-track"><div class="bar-fill bf-blu" data-w="25%"></div></div></div>
+      <div class="bar-item"><div class="bar-meta"><span class="bar-name">Atoms</span><span class="bar-count">1 Q</span></div><div class="bar-track"><div class="bar-fill bf-blu" data-w="25%"></div></div></div>
+      <div class="bar-item">
+        <div class="bar-meta"><span class="bar-name" style="color:var(--dim)">Magnetism &amp; Matter</span><span class="bar-count" style="color:#f87171">0 Q</span></div>
+        <div class="bar-track"><div class="bar-fill bf-zero"></div></div>
+        <div class="bar-zero-warn">ABSENT — Prepare at least 1 question level</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 4 — ACCORDION TABLE -->
+<section>
+  <div class="sec-hd"><span class="sec-num">§04</span><h2 class="sec-title">Click Any Chapter — Deep Breakdown</h2><div class="sec-line"></div></div>
+
+  <div class="legend">
+    <span class="leg"><span class="leg-dot" style="background:var(--green)"></span>Easy</span>
+    <span class="leg"><span class="leg-dot" style="background:var(--gold)"></span>Medium</span>
+    <span class="leg"><span class="leg-dot" style="background:#f87171"></span>Hard</span>
+    <span class="leg"><span class="leg-dot" style="background:var(--purple)"></span>Theory</span>
+    <span class="leg"><span class="leg-dot" style="background:var(--blue)"></span>Numerical</span>
+    <span class="leg"><span class="leg-dot" style="background:var(--orange)"></span>Graph</span>
+  </div>
+
+  <div style="overflow-x:auto">
+  <table class="acc-table">
+    <thead><tr><th>Chapter</th><th>Qs</th><th>Difficulty</th><th>Type</th><th>Click to expand ↓</th></tr></thead>
+    <tbody id="accBody">
+      <tr class="class-div"><td colspan="5">Class XI — 19 Questions</td></tr>
+
+      <tr class="acc-row" onclick="toggleAcc(this)"><td><span class="ch-name"><span class="ch-arrow">›</span> Units &amp; Measurement</span></td><td><span class="q-big">3</span></td><td><span class="pill pe">E×2</span><span class="pill pm">M×1</span></td><td><span class="pill pn">Numerical</span><span class="pill pt">Theory</span></td><td style="font-size:12px;color:var(--muted)">Significant figures trap</td></tr>
+      <tr class="acc-detail"><td colspan="5"><div class="acc-inner"><div class="ai-box"><div class="ai-label">Topics Asked</div><div class="ai-val">Speed of light unit conversion · Significant figures &amp; density of cube · Vernier callipers least count</div></div><div class="ai-box"><div class="ai-label">Key Trap</div><div class="ai-val">Significant figures question — students often round incorrectly under pressure. X×10³ format with correct SF.</div></div><div class="ai-box"><div class="ai-label">2027 Outlook</div><div class="ai-val">Consistent chapter. Expect 2–3 Qs. Dimensional analysis or error propagation likely in 2027.</div></div></div></td></tr>
+
+      <tr class="acc-row" onclick="toggleAcc(this)"><td><span class="ch-name"><span class="ch-arrow">›</span> Oscillations</span></td><td><span class="q-big">3</span></td><td><span class="pill pe">E×1</span><span class="pill pm">M×1</span><span class="pill ph">H×1</span></td><td><span class="pill pt">Theory</span><span class="pill pn">Numerical</span><span class="pill pg">Graph</span></td><td style="font-size:12px;color:var(--muted)">KE graph + pendulum</td></tr>
+      <tr class="acc-detail"><td colspan="5"><div class="acc-inner"><div class="ai-box"><div class="ai-label">Topics Asked</div><div class="ai-val">KE vs time graph for pendulum · Speed at equilibrium using KE+PE conservation · Pendulum length from time period</div></div><div class="ai-box"><div class="ai-label">Key Trap</div><div class="ai-val">KE vs time graph — period of KE oscillation is T/2, not T. Many students mark wrong graph period.</div></div><div class="ai-box"><div class="ai-label">2027 Outlook</div><div class="ai-val">High weightage chapter. SHM graphs and spring-mass numerical both likely. Don't skip damped oscillations theory.</div></div></div></td></tr>
+
+      <tr class="acc-row" onclick="toggleAcc(this)"><td><span class="ch-name"><span class="ch-arrow">›</span> Motion in Straight Line</span></td><td><span class="q-big">2</span></td><td><span class="pill pm">M×1</span><span class="pill ph">H×1</span></td><td><span class="pill pg">Graph</span><span class="pill pn">Numerical</span></td><td style="font-size:12px;color:var(--muted)">v-t graph below x-axis</td></tr>
+      <tr class="acc-detail"><td colspan="5"><div class="acc-inner"><div class="ai-box"><div class="ai-label">Topics Asked</div><div class="ai-val">V-T graph of ball thrown vertically upward · Ruler falling experiment — reaction time to distance comparison</div></div><div class="ai-box"><div class="ai-label">Key Trap</div><div class="ai-val">V-T graph — ball going below launch point gives negative displacement. 60%+ students misinterpret negative values.</div></div><div class="ai-box"><div class="ai-label">2027 Outlook</div><div class="ai-val">Graphs will continue. Practice v-t graphs where ball goes below launch point. Relative motion may return.</div></div></div></td></tr>
+
+      <tr class="acc-row" onclick="toggleAcc(this)"><td><span class="ch-name"><span class="ch-arrow">›</span> Laws of Motion</span></td><td><span class="q-big">2</span></td><td><span class="pill pe">E×1</span><span class="pill pm">M×1</span></td><td><span class="pill pn">Numerical×2</span></td><td style="font-size:12px;color:var(--muted)">Friction &amp; force directions</td></tr>
+      <tr class="acc-detail"><td colspan="5"><div class="acc-inner"><div class="ai-box"><div class="ai-label">Topics Asked</div><div class="ai-val">Max acceleration on trolley (static friction limit) · Resultant of two perpendicular forces (8N, 6N) on 5kg mass</div></div><div class="ai-box"><div class="ai-label">Key Trap</div><div class="ai-val">Perpendicular force question — direction of acceleration expressed as tan⁻¹(3/4) or (4/3). Students confuse angle reference.</div></div><div class="ai-box"><div class="ai-label">2027 Outlook</div><div class="ai-val">Pulley systems and friction on inclined planes are overdue. Pseudo-force in non-inertial frames likely.</div></div></div></td></tr>
+
+      <tr class="acc-row" onclick="toggleAcc(this)"><td><span class="ch-name"><span class="ch-arrow">›</span> System of Particles &amp; RM</span></td><td><span class="q-big">2</span></td><td><span class="pill pm">M×1</span><span class="pill ph">H×1</span></td><td><span class="pill pn">Numerical×2</span></td><td style="font-size:12px;color:var(--muted)">MOI of wire ring — tricky</td></tr>
+      <tr class="acc-detail"><td colspan="5"><div class="acc-inner"><div class="ai-box"><div class="ai-label">Topics Asked</div><div class="ai-val">Flywheel: 600→1200 rpm in 10s, revolutions completed · Wire of length L bent into ring — MOI about y-axis</div></div><div class="ai-box"><div class="ai-label">Key Trap</div><div class="ai-val">Wire ring MOI — must use parallel axis theorem correctly. Many students forget the L vs R relationship from wire length.</div></div><div class="ai-box"><div class="ai-label">2027 Outlook</div><div class="ai-val">Rolling motion and torque likely. Angular momentum conservation in 2+ body problems expected.</div></div></div></td></tr>
+
+      <tr class="acc-row" onclick="toggleAcc(this)"><td><span class="ch-name"><span class="ch-arrow">›</span> Work, Energy &amp; Power</span></td><td><span class="q-big">1</span></td><td><span class="pill pe">E×1</span></td><td><span class="pill pn">Numerical</span></td><td style="font-size:12px;color:var(--muted)">Direct P=mgh/t</td></tr>
+      <tr class="acc-detail"><td colspan="5"><div class="acc-inner"><div class="ai-box"><div class="ai-label">Topics Asked</div><div class="ai-val">Crane lifting 1000kg to 20m in 10s — power calculation</div></div><div class="ai-box"><div class="ai-label">Key Trap</div><div class="ai-val">Answer in Watts vs kilowatts — students calculate correctly but select wrong unit option.</div></div><div class="ai-box"><div class="ai-label">2027 Outlook</div><div class="ai-val">Collision-based energy questions or spring PE problems likely. Only 1Q expected but easy marks.</div></div></div></td></tr>
+
+      <tr class="acc-row" onclick="toggleAcc(this)"><td><span class="ch-name"><span class="ch-arrow">›</span> Gravitation</span></td><td><span class="q-big">1</span></td><td><span class="pill pe">E×1</span></td><td><span class="pill pn">Numerical</span></td><td style="font-size:12px;color:var(--muted)">W = mgR/2 formula</td></tr>
+      <tr class="acc-detail"><td colspan="5"><div class="acc-inner"><div class="ai-box"><div class="ai-label">Topics Asked</div><div class="ai-val">Work done to raise mass m to height equal to Earth's radius R</div></div><div class="ai-box"><div class="ai-label">Key Trap</div><div class="ai-val">Students use W=mgh. Correct answer uses change in gravitational PE: W = mgR/2 (not mgR). Height ≠ small.</div></div><div class="ai-box"><div class="ai-label">2027 Outlook</div><div class="ai-val">Orbital velocity or satellite energy may appear. Escape velocity numerical is overdue.</div></div></div></td></tr>
+
+      <tr class="acc-row" onclick="toggleAcc(this)"><td><span class="ch-name"><span class="ch-arrow">›</span> Mech. Properties of Solids</span></td><td><span class="q-big">1</span></td><td><span class="pill pm">M×1</span></td><td><span class="pill pmatch">Matching</span></td><td style="font-size:12px;color:var(--muted)">4 moduli matching</td></tr>
+      <tr class="acc-detail"><td colspan="5"><div class="acc-inner"><div class="ai-box"><div class="ai-label">Topics Asked</div><div class="ai-val">Match Young's Modulus, Bulk Modulus, Compressibility, Poisson's Ratio to their mathematical expressions</div></div><div class="ai-box"><div class="ai-label">Key Trap</div><div class="ai-val">Compressibility = 1/Bulk Modulus. Students match Bulk Modulus formula to Compressibility row.</div></div><div class="ai-box"><div class="ai-label">2027 Outlook</div><div class="ai-val">Low weightage chapter. Stress-strain graph or modulus numerical likely if it appears again.</div></div></div></td></tr>
+
+      <tr class="acc-row" onclick="toggleAcc(this)"><td><span class="ch-name"><span class="ch-arrow">›</span> Mech. Properties of Fluids</span></td><td><span class="q-big">1</span></td><td><span class="pill pe">E×1</span></td><td><span class="pill pn">Numerical</span></td><td style="font-size:12px;color:var(--muted)">Pressure depth formula</td></tr>
+      <tr class="acc-detail"><td colspan="5"><div class="acc-inner"><div class="ai-box"><div class="ai-label">Topics Asked</div><div class="ai-val">Submarine withstanding 100 atm absolute pressure — depth calculation</div></div><div class="ai-box"><div class="ai-label">Key Trap</div><div class="ai-val">"Absolute" pressure includes atmospheric. Gauge pressure = Total − 1 atm. Many students skip subtracting 1 atm.</div></div><div class="ai-box"><div class="ai-label">2027 Outlook</div><div class="ai-val">Bernoulli's or surface tension numerical possible. Viscosity and Stokes law are underexplored by this paper.</div></div></div></td></tr>
+
+      <tr class="acc-row" onclick="toggleAcc(this)"><td><span class="ch-name"><span class="ch-arrow">›</span> Thermodynamics</span></td><td><span class="q-big">1</span></td><td><span class="pill pe">E×1</span></td><td><span class="pill pn">Numerical</span></td><td style="font-size:12px;color:var(--muted)">First Law direct</td></tr>
+      <tr class="acc-detail"><td colspan="5"><div class="acc-inner"><div class="ai-box"><div class="ai-label">Topics Asked</div><div class="ai-val">Electric heater at 100W, system does work at 75J/s — rate of internal energy increase</div></div><div class="ai-box"><div class="ai-label">Key Trap</div><div class="ai-val">Sign convention. ΔU = Q − W. Students sometimes add instead of subtract or confuse W sign direction.</div></div><div class="ai-box"><div class="ai-label">2027 Outlook</div><div class="ai-val">Carnot efficiency or PV diagram expected in 2027. Second Law and entropy questions underdue.</div></div></div></td></tr>
+
+      <tr class="acc-row" onclick="toggleAcc(this)"><td><span class="ch-name"><span class="ch-arrow">›</span> Kinetic Theory</span></td><td><span class="q-big">1</span></td><td><span class="pill pm">M×1</span></td><td><span class="pill pn">Numerical</span></td><td style="font-size:12px;color:var(--muted)">RMS speed ratio</td></tr>
+      <tr class="acc-detail"><td colspan="5"><div class="acc-inner"><div class="ai-box"><div class="ai-label">Topics Asked</div><div class="ai-val">Argon and Chlorine gas 2:1 by mass at 27°C. Ratio of v_rms(Ar)/v_rms(Cl₂)</div></div><div class="ai-box"><div class="ai-label">Key Trap</div><div class="ai-val">Mass ratio given, not mole ratio. v_rms depends on molecular mass (M), not sample mass. Students use wrong M values.</div></div><div class="ai-box"><div class="ai-label">2027 Outlook</div><div class="ai-val">Mean free path or degrees of freedom questions likely. Equipartition theorem appears consistently.</div></div></div></td></tr>
+
+      <tr class="acc-row" onclick="toggleAcc(this)"><td><span class="ch-name"><span class="ch-arrow">›</span> Waves</span></td><td><span class="q-big">1</span></td><td><span class="pill pm">M×1</span></td><td><span class="pill pn">Numerical</span></td><td style="font-size:12px;color:var(--muted)">Phase from wave equation</td></tr>
+      <tr class="acc-detail"><td colspan="5"><div class="acc-inner"><div class="ai-box"><div class="ai-label">Topics Asked</div><div class="ai-val">Travelling wave y=2cos2π(10t−0.008x+0.35). Phase difference for separation 0.5m</div></div><div class="ai-box"><div class="ai-label">Key Trap</div><div class="ai-val">x is in cm in the equation but separation given in metres. Unit mismatch causes wrong answer (off by 100).</div></div><div class="ai-box"><div class="ai-label">2027 Outlook</div><div class="ai-val">Standing waves and Doppler effect likely. Beats and resonance are historically consistent topics.</div></div></div></td></tr>
+
+      <tr class="acc-row" onclick="toggleAcc(this)"><td><span class="ch-name"><span class="ch-arrow" style="color:#f87171">›</span> <span style="color:var(--dim)">Motion in a Plane</span></span></td><td><span class="q-big zero">—</span></td><td><span class="pill pzero">ABSENT</span></td><td>—</td><td style="font-size:12px;color:#f87171">⚠ High 2027 return risk</td></tr>
+      <tr class="acc-detail"><td colspan="5"><div class="acc-inner"><div class="ai-box"><div class="ai-label">What Was Missing</div><div class="ai-val">Projectile motion, relative velocity, circular motion — zero questions in 2026</div></div><div class="ai-box"><div class="ai-label">Why It's Dangerous</div><div class="ai-val">Chapters that skip 1 year historically return in the next. Projectile and circular motion are staple topics. Don't ignore.</div></div><div class="ai-box"><div class="ai-label">2027 Preparation</div><div class="ai-val">Prepare projectile symmetry, range formula variations, relative velocity in 2D, and uniform circular motion basics.</div></div></div></td></tr>
+
+      <tr class="acc-row" onclick="toggleAcc(this)"><td><span class="ch-name"><span class="ch-arrow" style="color:#f87171">›</span> <span style="color:var(--dim)">Thermal Properties of Matter</span></span></td><td><span class="q-big zero">—</span></td><td><span class="pill pzero">ABSENT</span></td><td>—</td><td style="font-size:12px;color:#f87171">⚠ Do not ignore</td></tr>
+      <tr class="acc-detail"><td colspan="5"><div class="acc-inner"><div class="ai-box"><div class="ai-label">What Was Missing</div><div class="ai-val">Thermal expansion, specific heat, calorimetry, heat conduction, radiation — zero questions</div></div><div class="ai-box"><div class="ai-label">Why It's Dangerous</div><div class="ai-val">Last 3 years this chapter appeared consistently. Its absence in 2026 makes it a near-certain candidate for 2027.</div></div><div class="ai-box"><div class="ai-label">2027 Preparation</div><div class="ai-val">Focus on calorimetry numericals and Newton's law of cooling. Stefan's law and Wien's displacement are statement-type favorites.</div></div></div></td></tr>
+
+      <tr class="class-div"><td colspan="5">Class XII — 26 Questions</td></tr>
+
+      <tr class="acc-row" onclick="toggleAcc(this)"><td><span class="ch-name"><span class="ch-arrow">›</span> Current Electricity ⭐</span></td><td><span class="q-big">4</span></td><td><span class="pill pe">E×1</span><span class="pill pm">M×2</span><span class="pill ph">H×1</span></td><td><span class="pill pn">Numerical×3</span><span class="pill pt">Theory×1</span></td><td style="font-size:12px;color:var(--orange)">Highest weightage chapter</td></tr>
+      <tr class="acc-detail"><td colspan="5"><div class="acc-inner"><div class="ai-box"><div class="ai-label">Topics Asked</div><div class="ai-val">Terminal voltage of battery · Square loop resistance circuit · Room heater power at reduced voltage · Metre bridge cell-galvanometer interchange</div></div><div class="ai-box"><div class="ai-label">Key Trap</div><div class="ai-val">Metre bridge question: swapping cell and galvanometer — most students think it breaks balance. It doesn't. Conceptual trap.</div></div><div class="ai-box"><div class="ai-label">2027 Outlook</div><div class="ai-val">This chapter will stay at 3–4 questions. Kirchhoff's laws multi-loop and Wheatstone bridge numericals are staple. Master every subtopic.</div></div></div></td></tr>
+
+      <tr class="acc-row" onclick="toggleAcc(this)"><td><span class="ch-name"><span class="ch-arrow">›</span> Moving Charges &amp; Magnetism</span></td><td><span class="q-big">3</span></td><td><span class="pill pe">E×1</span><span class="pill pm">M×1</span><span class="pill ph">H×1</span></td><td><span class="pill pn">Numerical×2</span><span class="pill pg">Graph×1</span></td><td style="font-size:12px;color:var(--muted)">B vs r graph inside wire</td></tr>
+      <tr class="acc-detail"><td colspan="5"><div class="acc-inner"><div class="ai-box"><div class="ai-label">Topics Asked</div><div class="ai-val">Circular coil B at centre + magnetic moment · Galvanometer to ammeter (shunt) · B vs r inside/outside long wire graph</div></div><div class="ai-box"><div class="ai-label">Key Trap</div><div class="ai-val">B vs r graph: inside wire B ∝ r (linear), outside B ∝ 1/r. Students often draw wrong curve shape at the boundary point r=a.</div></div><div class="ai-box"><div class="ai-label">2027 Outlook</div><div class="ai-val">Force between parallel wires and velocity selector/cyclotron expected. Torque on current loop in B field likely.</div></div></div></td></tr>
+
+      <tr class="acc-row" onclick="toggleAcc(this)"><td><span class="ch-name"><span class="ch-arrow">›</span> Semiconductor Electronics</span></td><td><span class="q-big">3</span></td><td><span class="pill pm">M×1</span><span class="pill ph">H×2</span></td><td><span class="pill pt">Theory×1</span><span class="pill pg">Graph×1</span><span class="pill pn">Circuit×1</span></td><td style="font-size:12px;color:#f87171">2 Hard Qs — Warning</td></tr>
+      <tr class="acc-detail"><td colspan="5"><div class="acc-inner"><div class="ai-box"><div class="ai-label">Topics Asked</div><div class="ai-val">Multi-diode circuit (all ideal) → current calculation · Diode voltage waveform graph (AC input) · p-n junction forward bias theory</div></div><div class="ai-box"><div class="ai-label">Key Trap</div><div class="ai-val">Multi-diode circuit: identifying which diodes are forward/reverse biased requires careful analysis. 70%+ students got this wrong.</div></div><div class="ai-box"><div class="ai-label">2027 Outlook</div><div class="ai-val">Difficulty will stay high. Logic gates, transistor as switch/amplifier, and zener diode are all likely. Don't treat this as a scoring chapter anymore.</div></div></div></td></tr>
+
+      <tr class="acc-row" onclick="toggleAcc(this)"><td><span class="ch-name"><span class="ch-arrow">›</span> Electrostatic Potential &amp; Cap.</span></td><td><span class="q-big">2</span></td><td><span class="pill pm">M×1</span><span class="pill ph">H×1</span></td><td><span class="pill pn">Numerical×2</span></td><td style="font-size:12px;color:var(--muted)">Capacitor network + energy loss</td></tr>
+      <tr class="acc-detail"><td colspan="5"><div class="acc-inner"><div class="ai-box"><div class="ai-label">Topics Asked</div><div class="ai-val">5-capacitor network (C1–C4=10μF, C5=2.5μF, 50V) → equivalent C and charges · Energy lost when charged cap connects to uncharged cap</div></div><div class="ai-box"><div class="ai-label">Key Trap</div><div class="ai-val">Network question: different capacitors have different charges (series vs parallel). Students assume all have same charge.</div></div><div class="ai-box"><div class="ai-label">2027 Outlook</div><div class="ai-val">Dielectric insertion and capacitor with conducting slab expected. Van de Graaff and potential due to ring likely theory-type.</div></div></div></td></tr>
+
+      <tr class="acc-row" onclick="toggleAcc(this)"><td><span class="ch-name"><span class="ch-arrow">›</span> Alternating Current</span></td><td><span class="q-big">2</span></td><td><span class="pill pe">E×1</span><span class="pill pm">M×1</span></td><td><span class="pill pn">Numerical×2</span></td><td style="font-size:12px;color:var(--muted)">Resonance + peak time</td></tr>
+      <tr class="acc-detail"><td colspan="5"><div class="acc-inner"><div class="ai-box"><div class="ai-label">Topics Asked</div><div class="ai-val">LCR series resonance frequency (1kΩ, 0.1μF, 1mH) · Time for AC current to go from 0 to peak value (f=60Hz)</div></div><div class="ai-box"><div class="ai-label">Key Trap</div><div class="ai-val">Time to peak = T/4 = 1/(4f). Students calculate T but forget to divide by 4, or divide by 2 instead.</div></div><div class="ai-box"><div class="ai-label">2027 Outlook</div><div class="ai-val">Power factor and impedance questions likely. Transformer and LC oscillations are underrepresented in recent years.</div></div></div></td></tr>
+
+      <tr class="acc-row" onclick="toggleAcc(this)"><td><span class="ch-name"><span class="ch-arrow">›</span> Ray Optics</span></td><td><span class="q-big">2</span></td><td><span class="pill pe">E×1</span><span class="pill pm">M×1</span></td><td><span class="pill pn">Numerical×1</span><span class="pill pt">Theory×1</span></td><td style="font-size:12px;color:var(--muted)">Prism deviation + lens theory</td></tr>
+      <tr class="acc-detail"><td colspan="5"><div class="acc-inner"><div class="ai-box"><div class="ai-label">Topics Asked</div><div class="ai-val">Equilateral prism: refracted ray parallel to base (min deviation condition), angle i=50° → angle of deviation · Concave lens refraction rules</div></div><div class="ai-box"><div class="ai-label">Key Trap</div><div class="ai-val">Prism: ray parallel to base means min deviation. Formula δ = i + e − A with e=i. Students use general formula and get confused.</div></div><div class="ai-box"><div class="ai-label">2027 Outlook</div><div class="ai-val">Mirror formula and lens maker's equation expected. Optical fiber and total internal reflection questions likely.</div></div></div></td></tr>
+
+      <tr class="acc-row" onclick="toggleAcc(this)"><td><span class="ch-name"><span class="ch-arrow">›</span> Wave Optics</span></td><td><span class="q-big">2</span></td><td><span class="pill pm">M×1</span><span class="pill ph">H×1</span></td><td><span class="pill pn">Numerical×1</span><span class="pill pt">Theory×1</span></td><td style="font-size:12px;color:var(--muted)">YDSE intensity formula</td></tr>
+      <tr class="acc-detail"><td colspan="5"><div class="acc-inner"><div class="ai-box"><div class="ai-label">Topics Asked</div><div class="ai-val">YDSE: intensity K at path diff λ → intensity at path diff λ/3 · True/False: interference + diffraction energy conservation, light-only waves claim</div></div><div class="ai-box"><div class="ai-label">Key Trap</div><div class="ai-val">Intensity formula: I = 4I₀cos²(δ/2). For path diff λ/3, phase diff = 2π/3. Students use wrong angle in cosine.</div></div><div class="ai-box"><div class="ai-label">2027 Outlook</div><div class="ai-val">Thin film interference and polarization expected. Resolving power numerical is a favorite of this exam.</div></div></div></td></tr>
+
+      <tr class="acc-row" onclick="toggleAcc(this)"><td><span class="ch-name"><span class="ch-arrow">›</span> Dual Nature of Radiation</span></td><td><span class="q-big">2</span></td><td><span class="pill pm">M×1</span><span class="pill ph">H×1</span></td><td><span class="pill pt">Theory×1</span><span class="pill pmatch">Matching×1</span></td><td style="font-size:12px;color:var(--muted)">Matching quantum concepts</td></tr>
+      <tr class="acc-detail"><td colspan="5"><div class="acc-inner"><div class="ai-box"><div class="ai-label">Topics Asked</div><div class="ai-val">Photoelectric: work function 6.6eV — which wavelength doesn't cause emission · Match: E=hν, diffraction/interference, de Broglie λ=h/p, Compton effect</div></div><div class="ai-box"><div class="ai-label">Key Trap</div><div class="ai-val">Photoelectric: λ=200nm gives E=6.2eV &lt; 6.6eV. Doesn't cause emission. Students often calculate incorrectly under pressure.</div></div><div class="ai-box"><div class="ai-label">2027 Outlook</div><div class="ai-val">de Broglie wavelength numerical for electrons/protons likely. Photoelectric stopping potential concept expected.</div></div></div></td></tr>
+
+      <tr class="acc-row" onclick="toggleAcc(this)"><td><span class="ch-name"><span class="ch-arrow">›</span> Nuclei</span></td><td><span class="q-big">2</span></td><td><span class="pill pm">M×1</span><span class="pill ph">H×1</span></td><td><span class="pill pt">Theory×1</span><span class="pill pn">Numerical×1</span></td><td style="font-size:12px;color:var(--muted)">Mass defect + density calc</td></tr>
+      <tr class="acc-detail"><td colspan="5"><div class="acc-inner"><div class="ai-box"><div class="ai-label">Topics Asked</div><div class="ai-val">True/False on nuclear volume ∝ A¹/³ vs A, and mass defect definition · Nuclear density given → find mass number A</div></div><div class="ai-box"><div class="ai-label">Key Trap</div><div class="ai-val">Volume ∝ A (not A¹/³) since R ∝ A¹/³ and V = (4/3)πR³. Students confuse radius and volume proportionality.</div></div><div class="ai-box"><div class="ai-label">2027 Outlook</div><div class="ai-val">Radioactive decay law and half-life calculation expected. Binding energy per nucleon graph reading is overdue.</div></div></div></td></tr>
+
+      <tr class="acc-row" onclick="toggleAcc(this)"><td><span class="ch-name"><span class="ch-arrow">›</span> Electric Charges &amp; Fields</span></td><td><span class="q-big">1</span></td><td><span class="pill pm">M×1</span></td><td><span class="pill pt">Theory</span></td><td style="font-size:12px;color:var(--muted)">Conductor properties</td></tr>
+      <tr class="acc-detail"><td colspan="5"><div class="acc-inner"><div class="ai-box"><div class="ai-label">Topics Asked</div><div class="ai-val">Select correct statements about conductor in electrostatic equilibrium (E=0 inside, normal at surface, no excess charge inside, etc.)</div></div><div class="ai-box"><div class="ai-label">Key Trap</div><div class="ai-val">Statement: "electrostatic potential is zero inside" — FALSE. It is constant, not necessarily zero. Students confuse zero-field with zero-potential.</div></div><div class="ai-box"><div class="ai-label">2027 Outlook</div><div class="ai-val">Electric field lines, Gauss's law numerical, and Coulomb's law multi-charge problem expected.</div></div></div></td></tr>
+
+      <tr class="acc-row" onclick="toggleAcc(this)"><td><span class="ch-name"><span class="ch-arrow">›</span> Electromagnetic Induction</span></td><td><span class="q-big">1</span></td><td><span class="pill pm">M×1</span></td><td><span class="pill pn">Numerical</span></td><td style="font-size:12px;color:var(--muted)">EMF from moving loop</td></tr>
+      <tr class="acc-detail"><td colspan="5"><div class="acc-inner"><div class="ai-box"><div class="ai-label">Topics Asked</div><div class="ai-val">Rectangular loop (8cm × 3cm) moving out of B=0.3T at 2cm/s normal to shorter side → EMF across cut</div></div><div class="ai-box"><div class="ai-label">Key Trap</div><div class="ai-val">EMF = Bvl where l is the side moving through field boundary = 8cm (longer side). Students use 3cm (shorter side).</div></div><div class="ai-box"><div class="ai-label">2027 Outlook</div><div class="ai-val">Lenz's law direction question and rotating coil EMF (ε=NBAω sinωt) likely. Self and mutual inductance numerical expected.</div></div></div></td></tr>
+
+      <tr class="acc-row" onclick="toggleAcc(this)"><td><span class="ch-name"><span class="ch-arrow">›</span> Electromagnetic Waves</span></td><td><span class="q-big">1</span></td><td><span class="pill pm">M×1</span></td><td><span class="pill pmatch">Matching</span></td><td style="font-size:12px;color:var(--muted)">EM wave production match</td></tr>
+      <tr class="acc-detail"><td colspan="5"><div class="acc-inner"><div class="ai-box"><div class="ai-label">Topics Asked</div><div class="ai-val">Match EM waves (Microwave, Visible, Gamma, Infrared) to their production mechanisms (Klystron, electron transitions, radioactive decay, molecular vibration)</div></div><div class="ai-box"><div class="ai-label">Key Trap</div><div class="ai-val">Microwave → Klystron valve or magnetron. Students confuse with radio waves. Infrared → molecular vibrations (not electron transitions).</div></div><div class="ai-box"><div class="ai-label">2027 Outlook</div><div class="ai-val">EM spectrum ordering and wavelength ranges are statement favorites. Properties of EM waves (transverse, speed in vacuum) expected.</div></div></div></td></tr>
+
+      <tr class="acc-row" onclick="toggleAcc(this)"><td><span class="ch-name"><span class="ch-arrow">›</span> Atoms</span></td><td><span class="q-big">1</span></td><td><span class="pill pm">M×1</span></td><td><span class="pill pn">Numerical</span></td><td style="font-size:12px;color:var(--muted)">Bohr radius calculation</td></tr>
+      <tr class="acc-detail"><td colspan="5"><div class="acc-inner"><div class="ai-box"><div class="ai-label">Topics Asked</div><div class="ai-val">H atom first excited state (E=−3.4eV) → radial distance from nucleus using Coulomb force = centripetal force</div></div><div class="ai-box"><div class="ai-label">Key Trap</div><div class="ai-val">First excited state = n=2. Bohr radius for n=2 = 4×a₀ = 2.12 Å. Students solve using energy formula and get confused with units (nm vs m).</div></div><div class="ai-box"><div class="ai-label">2027 Outlook</div><div class="ai-val">Spectral series wavelength and energy level transitions expected. de Broglie's explanation of Bohr orbits is a theory question favorite.</div></div></div></td></tr>
+
+      <tr class="acc-row" onclick="toggleAcc(this)"><td><span class="ch-name"><span class="ch-arrow" style="color:#f87171">›</span> <span style="color:var(--dim)">Magnetism &amp; Matter</span></span></td><td><span class="q-big zero">—</span></td><td><span class="pill pzero">ABSENT</span></td><td>—</td><td style="font-size:12px;color:#f87171">⚠ Prepare 1Q level</td></tr>
+      <tr class="acc-detail"><td colspan="5"><div class="acc-inner"><div class="ai-box"><div class="ai-label">What Was Missing</div><div class="ai-val">Diamagnetic, paramagnetic, ferromagnetic properties · Bar magnet field intensity · Hysteresis loop</div></div><div class="ai-box"><div class="ai-label">Risk Level</div><div class="ai-val">Medium risk for 2027. This chapter historically gives 1 theory-type question about magnetic material classification.</div></div><div class="ai-box"><div class="ai-label">2027 Preparation</div><div class="ai-val">Know the three magnetic material types, their susceptibility signs, and Curie's law. One table is sufficient.</div></div></div></td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="sec-tease" onclick="document.getElementById('traps').scrollIntoView({behavior:'smooth'})">
+    → 3 specific questions in this paper trapped even students who had studied everything. Find out which ones — and exactly why. ↓
+  </div>
+</section>
+
+<!-- SECTION 5 — TRAP QUESTIONS -->
+<section id="traps">
+  <div class="sec-hd"><span class="sec-num">§05</span><h2 class="sec-title">The 3 Questions That Trapped Everyone</h2><div class="sec-line"></div></div>
+  <p style="font-size:14px;color:var(--txt2);margin-bottom:28px;line-height:1.8">These weren't hard questions. They were <strong style="color:var(--txt)">familiar-looking questions with hidden wrong turns.</strong> 65–80% of students made the mistake in each one.</p>
+
+  <div class="trap-grid">
+    <div class="trap-card">
+      <div class="trap-num">Trap #1 · Gravitation</div>
+      <div class="trap-q">Work done to raise mass m to height equal to Earth's radius R</div>
+      <div class="trap-mistake">
+        <div class="trap-m-label">What 80% of students did</div>
+        <div class="trap-m-body">Used W = mgh = mgR. Simple substitution. Wrong answer. The formula W=mgh only works for small heights where g is constant.</div>
+      </div>
+      <div class="trap-correct">
+        <div class="trap-c-label">Correct thinking</div>
+        <div class="trap-c-body">ΔPE = −GMm/2R − (−GMm/R) = GMm/2R = mgR/2. Answer is <strong>mgR/2, not mgR.</strong> Height equals R — g is not constant here.</div>
+      </div>
+    </div>
+
+    <div class="trap-card">
+      <div class="trap-num">Trap #2 · Motion in Straight Line</div>
+      <div class="trap-q">Ball thrown vertically upward. Find position after 6 seconds. Answer came negative.</div>
+      <div class="trap-mistake">
+        <div class="trap-m-label">What 70% of students did</div>
+        <div class="trap-m-body">Got a negative displacement. Assumed calculation error. Re-calculated 3 times. Panicked. Left it blank or marked wrong option.</div>
+      </div>
+      <div class="trap-correct">
+        <div class="trap-c-label">Correct thinking</div>
+        <div class="trap-c-body">Negative displacement = ball is <strong>below the point of projection.</strong> Ball went up, came back, and continued below (e.g. thrown from a building). Formula was correct. Interpretation was the test.</div>
+      </div>
+    </div>
+
+    <div class="trap-card">
+      <div class="trap-num">Trap #3 · Current Electricity</div>
+      <div class="trap-q">Metre bridge: cell and galvanometer positions are interchanged. What happens?</div>
+      <div class="trap-mistake">
+        <div class="trap-m-label">What 65% of students did</div>
+        <div class="trap-m-body">Thought the balance point would shift completely or the galvanometer would only deflect one side. Marked wrong option.</div>
+      </div>
+      <div class="trap-correct">
+        <div class="trap-c-label">Correct thinking</div>
+        <div class="trap-c-body">The balance point remains the same. At balance, galvanometer reads zero regardless of which side it's on. Only deflection pattern near balance changes — both sides deflect, with zero at balance point. This is <strong>pure concept, zero calculation.</strong></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec-tease" onclick="document.getElementById('predict').scrollIntoView({behavior:'smooth'})">
+    → You've seen what 2026 asked. Now — what will 2027 ask? Based on 5-year NEET patterns and 2026 gaps. ↓
+  </div>
+</section>
+
+<!-- SECTION 6 — DIFFICULTY -->
+<section>
+  <div class="sec-hd"><span class="sec-num">§06</span><h2 class="sec-title">Difficulty &amp; Question Type Breakdown</h2><div class="sec-line"></div></div>
+
+  <div class="diff-row">
+    <div class="diff-card d-easy"><div class="diff-big">12</div><div class="diff-lbl">Easy</div><div class="diff-sub">27% · Guaranteed 48 marks if you don't overthink these</div></div>
+    <div class="diff-card d-med"><div class="diff-big">23</div><div class="diff-lbl">Medium</div><div class="diff-sub">51% · This is where every rank in India is decided</div></div>
+    <div class="diff-card d-hard"><div class="diff-big">10</div><div class="diff-lbl">Hard</div><div class="diff-sub">22% · Attempt only if genuinely sure — −1 is real</div></div>
+  </div>
+
+  <div class="type-row">
+    <div class="type-card"><div class="type-ico" style="background:rgba(91,143,212,.12);color:var(--blue)">∑</div><div><div class="type-n" style="color:var(--blue)">30</div><div class="type-nm">Numerical</div></div></div>
+    <div class="type-card"><div class="type-ico" style="background:rgba(168,127,212,.12);color:var(--purple)">T</div><div><div class="type-n" style="color:var(--purple)">11</div><div class="type-nm">Theory</div></div></div>
+    <div class="type-card"><div class="type-ico" style="background:rgba(232,146,74,.12);color:var(--orange)">📈</div><div><div class="type-n" style="color:var(--orange)">4</div><div class="type-nm">Graph</div></div></div>
+    <div class="type-card"><div class="type-ico" style="background:rgba(201,168,76,.10);color:var(--gold)">≡</div><div><div class="type-n" style="color:var(--gold)">4</div><div class="type-nm">Matching</div></div></div>
+    <div class="type-card"><div class="type-ico" style="background:rgba(93,186,142,.12);color:var(--green)">✓</div><div><div class="type-n" style="color:var(--green)">4</div><div class="type-nm">True/False Stmts</div></div></div>
+    <div class="type-card"><div class="type-ico" style="background:rgba(239,68,68,.10);color:#f87171">⚡</div><div><div class="type-n" style="color:#f87171">7</div><div class="type-nm">Direct Formula</div></div></div>
+  </div>
+</section>
+
+<!-- SECTION 7 — 2027 PREDICTIONS -->
+<section id="predict">
+  <div class="sec-hd"><span class="sec-num">§07</span><h2 class="sec-title">2027 Prediction Engine</h2><div class="sec-line"></div></div>
+  <p style="font-size:14px;color:var(--txt2);margin-bottom:28px;line-height:1.8">Based on 5-year NEET pattern analysis and 2026 gaps. Not guaranteed — but historically accurate for 75%+ of high-probability predictions.</p>
+
+  <div class="pred-grid">
+    <div class="pred-card"><span class="pred-prob pp-high">HIGH RISK</span><div class="pred-ch">Motion in a Plane Returns</div><div class="pred-why">Completely absent in 2026. Projectile, relative velocity, circular motion — 3 subtopics all disappeared. Pattern shows these return together. Expect 1–2 questions.</div><span class="pred-tag">Prepare: Projectile + Circular Motion</span></div>
+    <div class="pred-card"><span class="pred-prob pp-high">HIGH RISK</span><div class="pred-ch">Thermal Properties of Matter Returns</div><div class="pred-why">Absent in 2026. Appeared in 2023, 2024, 2025. This is a 1-year skip after consistent appearance. Calorimetry numerical and Newton's cooling are the likely formats.</div><span class="pred-tag">Prepare: Calorimetry + Stefan's Law</span></div>
+    <div class="pred-card"><span class="pred-prob pp-high">HIGH RISK</span><div class="pred-ch">Current Electricity Stays at 3–4 Qs</div><div class="pred-why">Historically the highest-weightage single chapter across all NEET years. 2026 reinforced this at 4 questions. Expect 3–4 again. This chapter is non-negotiable.</div><span class="pred-tag">Master Every Subtopic</span></div>
+    <div class="pred-card"><span class="pred-prob pp-high">HIGH RISK</span><div class="pred-ch">Semiconductor Stays Difficult</div><div class="pred-why">2026 had 2 Hard questions from this chapter — unprecedented. The exam board is clearly raising the bar here. Multi-device circuits and waveform analysis are now standard.</div><span class="pred-tag">Practice Circuit Analysis</span></div>
+    <div class="pred-card"><span class="pred-prob pp-med">MEDIUM RISK</span><div class="pred-ch">Oscillations Holds at 2–3 Qs</div><div class="pred-why">3 questions in 2026. Historically consistent at 2–3. KE-PE graphs and spring-mass system expected alongside pendulum. SHM graphs are a confirmed recurring format.</div><span class="pred-tag">SHM Graphs + Spring-Mass</span></div>
+    <div class="pred-card"><span class="pred-prob pp-med">MEDIUM RISK</span><div class="pred-ch">Rotational Motion — MOI Trap Again</div><div class="pred-why">Wire ring MOI in 2026 was deliberately tricky. Rotational motion consistently appears with a calculation trap. Rolling motion without slipping is overdue.</div><span class="pred-tag">Rolling Motion + Torque</span></div>
+    <div class="pred-card"><span class="pred-prob pp-med">MEDIUM RISK</span><div class="pred-ch">Magnetism &amp; Matter Returns</div><div class="pred-why">Absent in 2026. Historically appears every year as a 1-mark theory question about magnetic material classification. Easy marks if prepared. Don't skip.</div><span class="pred-tag">3 Material Types + Curie Law</span></div>
+    <div class="pred-card"><span class="pred-prob pp-low">LOWER RISK</span><div class="pred-ch">Wave Optics Difficulty May Rise</div><div class="pred-why">Both 2026 questions had conceptual depth. Thin film interference and polarization are completely unexplored so far. One of them likely appears in 2027.</div><span class="pred-tag">Thin Film + Polarization</span></div>
+    <div class="pred-card"><span class="pred-prob pp-low">LOWER RISK</span><div class="pred-ch">Radioactive Decay Numerical</div><div class="pred-why">Nuclei in 2026 stayed at theory + density. Half-life calculation and activity questions haven't appeared for 2 years. Overdue as a medium-difficulty numerical.</div><span class="pred-tag">Half-Life + Activity Formulae</span></div>
+  </div>
+</section>
+
+<!-- SECTION 8 — PRIORITY MATRIX -->
+<section id="matrix">
+  <div class="sec-hd"><span class="sec-num">§08</span><h2 class="sec-title">2027 Priority Matrix</h2><div class="sec-line"></div></div>
+  <p style="font-size:14px;color:var(--txt2);margin-bottom:24px;line-height:1.8">Where to invest your preparation hours for maximum mark return.</p>
+
+  <div class="matrix">
+    <div class="mx-cell mc-tl"><div class="mx-badge">🏆 Master First</div><div class="mx-title">High Weightage + Manageable</div><ul class="mx-list"><li>Current Electricity <span class="mx-q">4 Q · Mix difficulty</span></li><li>Units &amp; Measurement <span class="mx-q">3 Q · Easy-Med</span></li><li>Oscillations <span class="mx-q">3 Q · All types</span></li><li>Moving Charges &amp; Magnetism <span class="mx-q">3 Q · Mix</span></li><li>Alternating Current <span class="mx-q">2 Q · Easy-Med</span></li><li>Ray Optics <span class="mx-q">2 Q · Easy-Med</span></li></ul></div>
+    <div class="mx-cell mc-tr"><div class="mx-badge">⚔️ Train Hard</div><div class="mx-title">High Weightage + Difficult</div><ul class="mx-list"><li>Semiconductor Electronics <span class="mx-q">3 Q · 2 Hard</span></li><li>Electrostatic Potential &amp; Cap. <span class="mx-q">2 Q · 1 Hard</span></li><li>Wave Optics <span class="mx-q">2 Q · 1 Hard</span></li><li>Dual Nature <span class="mx-q">2 Q · 1 Hard</span></li><li>Nuclei <span class="mx-q">2 Q · 1 Hard</span></li><li>Rotational Motion <span class="mx-q">2 Q · 1 Hard</span></li></ul></div>
+    <div class="mx-cell mc-bl"><div class="mx-badge">⚡ Quick Wins</div><div class="mx-title">Low Weightage + Straightforward</div><ul class="mx-list"><li>Gravitation <span class="mx-q">1 Q · Easy (trap inside)</span></li><li>Work, Energy &amp; Power <span class="mx-q">1 Q · Easy</span></li><li>Thermodynamics <span class="mx-q">1 Q · Easy</span></li><li>Mech. Properties of Fluids <span class="mx-q">1 Q · Easy</span></li><li>Electromagnetic Induction <span class="mx-q">1 Q · Med</span></li><li>Atoms <span class="mx-q">1 Q · Med</span></li></ul></div>
+    <div class="mx-cell mc-br"><div class="mx-badge">🚨 Don't Ignore</div><div class="mx-title">Absent in 2026 — 2027 Danger</div><ul class="mx-list"><li>Motion in a Plane <span class="mx-q">0 Q · HIGH return risk</span></li><li>Thermal Properties of Matter <span class="mx-q">0 Q · HIGH return risk</span></li><li>Magnetism &amp; Matter <span class="mx-q">0 Q · MED return risk</span></li><li>Laws of Motion (inclined/pulley) <span class="mx-q">Advanced topics missing</span></li></ul></div>
+  </div>
+</section>
+
+<!-- SECTION 9 — TOPPER CHECKPOINT -->
+<section>
+  <div class="sec-hd"><span class="sec-num">§09</span><h2 class="sec-title">Topper's Checkpoint</h2><div class="sec-line"></div></div>
+  <p style="font-size:14px;color:var(--txt2);margin-bottom:28px;line-height:1.8">Five things the highest scorers understood about NEET 2026 Physics that average students missed entirely.</p>
+
+  <ol class="check-list">
+    <li class="check-item">
+      <span class="check-num">1</span>
+      <div class="check-body">
+        <div class="check-title">They attempted easy questions in under 30 seconds</div>
+        <div class="check-text">12 easy questions × 30 seconds = 6 minutes saved. That's 6 extra minutes for the hard questions. Toppers don't try to be careful on easy questions — they're fast and move on. Average students spend 90 seconds on a question worth the same 4 marks as a hard one.</div>
+      </div>
+    </li>
+    <li class="check-item">
+      <span class="check-num">2</span>
+      <div class="check-body">
+        <div class="check-title">They left the multi-diode circuit and attempted it last</div>
+        <div class="check-text">The Semiconductor multi-diode question (Q3) was the hardest question in the section. Toppers recognized it within 10 seconds, marked it to revisit, and moved on to collect easier marks. Average students spent 4+ minutes on it early and disrupted their momentum.</div>
+      </div>
+    </li>
+    <li class="check-item">
+      <span class="check-num">3</span>
+      <div class="check-body">
+        <div class="check-title">They read "what is asked" before "what is given"</div>
+        <div class="check-text">The Gravitation trap (W = mgR/2) and the V-T graph trap both came from not reading what was asked carefully. Toppers read the question ending — "work done", "displacement", "position" — first. Then they read the setup. This one habit saves 3–5 wrong answers per paper.</div>
+      </div>
+    </li>
+    <li class="check-item">
+      <span class="check-num">4</span>
+      <div class="check-body">
+        <div class="check-title">They treated matching questions as 4-mark gifts</div>
+        <div class="check-text">4 matching questions in this paper. Each takes under 60 seconds if your facts are organized. Toppers had matching flashcards for elastic moduli, EM wave production, and quantum concepts. Average students spent 3 minutes guessing. Matching questions are free marks — if you prepared them.</div>
+      </div>
+    </li>
+    <li class="check-item">
+      <span class="check-num">5</span>
+      <div class="check-body">
+        <div class="check-title">They never ignored absent chapters</div>
+        <div class="check-text">Motion in a Plane was absent in 2026. Toppers preparing for 2027 will not reduce it in their revision — they know the paper rotates. The students who drop absent chapters are exactly who the paper is designed to punish in the next year.</div>
+      </div>
+    </li>
+  </ol>
+</section>
+
+<!-- SECTION 10 — KEY INSIGHTS -->
+<section>
+  <div class="sec-hd"><span class="sec-num">§10</span><h2 class="sec-title">Key Insights for NEET 2027 Aspirants</h2><div class="sec-line"></div></div>
+
+  <div class="ins-grid">
+    <div class="ins-card ins-warn"><div class="ins-lbl">⚠ Semiconductor is Not a Scoring Chapter Anymore</div><div class="ins-body">3 questions, 2 were Hard in 2026. Multi-diode circuits and waveform graphs are now standard difficulty. <strong>Update your strategy immediately.</strong></div></div>
+    <div class="ins-card ins-good"><div class="ins-lbl">✓ Units &amp; Measurement — 15 Minutes = 12 Marks</div><div class="ins-body">3 questions, 2 Easy. Significant figures, Vernier LC, unit conversion are completely predictable. <strong>15 minutes of focused revision returns 12 guaranteed marks.</strong></div></div>
+    <div class="ins-card ins-warn"><div class="ins-lbl">⚠ 3 Chapters Completely Absent — Do Not Celebrate</div><div class="ins-body">Students who reduced Motion in a Plane and Thermal Properties of Matter because they didn't appear in 2026 are <strong>preparing to fail in 2027.</strong></div></div>
+    <div class="ins-card ins-tip"><div class="ins-lbl">💡 Current Electricity = Non-Negotiable</div><div class="ins-body">4 questions from one chapter — highest of any single chapter. This has been true for 5+ years. <strong>Every subtopic must be solved:</strong> Kirchhoff's, Wheatstone, circuits, potentiometer.</div></div>
+    <div class="ins-card ins-info"><div class="ins-lbl">📊 Spend 60% of Physics Time on Class XII</div><div class="ins-body">Class XII gave 58% of Physics questions (26/45). If you're splitting time equally between XI and XII, <strong>you're under-investing in the higher-return section.</strong></div></div>
+    <div class="ins-card ins-tip"><div class="ins-lbl">💡 Graph Literacy is a Cross-Chapter Skill</div><div class="ins-body">4 graph questions from 4 different areas. <strong>Graph reading is not a chapter — it's a skill.</strong> Dedicate 20 minutes per week specifically to graph practice across subjects.</div></div>
+    <div class="ins-card ins-good"><div class="ins-lbl">✓ Matching Questions = 16 Free Marks If Prepared</div><div class="ins-body">4 matching questions × 4 marks = 16 marks. Under 60 seconds each with organized knowledge. <strong>Create matching tables for: elastic moduli, EM waves, quantum concepts, magnetic materials.</strong></div></div>
+    <div class="ins-card ins-info"><div class="ins-lbl">📊 The 67-Second Rule</div><div class="ins-body">50 minutes ÷ 45 questions = 67 seconds per question. Solving 12 easy ones in 30 seconds each <strong>saves 6 full minutes</strong> — that's 77 seconds each for the remaining 33. Time is not the enemy. <strong>Poor time distribution is.</strong></div></div>
+  </div>
+</section>
+
+<!-- SECTION 11 — 67-SEC CHALLENGE -->
+<section id="challenge">
+  <div class="sec-hd"><span class="sec-num">§11</span><h2 class="sec-title">The 67-Second Challenge</h2><div class="sec-line"></div></div>
+  <p style="font-size:14px;color:var(--txt2);margin-bottom:28px;line-height:1.8">This question appeared in NEET 2026 (Medium difficulty). You have 67 seconds. Start when you click the button.</p>
+
+  <div class="challenge-box">
+    <div class="ch-header">
+      <div class="ch-title">Can You Beat the Clock?</div>
+      <div class="ch-sub">NEET 2026 · Kinetic Theory · Medium</div>
+    </div>
+
+    <div class="ch-question">
+      <div class="ch-q-label">Question</div>
+      A flask contains argon and chlorine in the ratio of 2:1 by mass. The temperature of the mixture is 27°C. The ratio of root mean square speed of the molecules, v<sub>rms</sub>(Ar) / v<sub>rms</sub>(Cl₂) is:<br><br>
+      <em style="color:var(--muted);font-size:12px">(Atomic mass of Ar = 40u, Molecular mass of Cl₂ = 70u)</em>
+    </div>
+
+    <div class="ch-timer" id="timerDisplay">67</div>
+
+    <div class="ch-opts" id="chOpts">
+      <button class="ch-opt" onclick="checkAns(this,'wrong')" data-correct="false">(1) √(7/2)</button>
+      <button class="ch-opt" onclick="checkAns(this,'wrong')" data-correct="false">(2) √(7/4)</button>
+      <button class="ch-opt" onclick="checkAns(this,'correct')" data-correct="true">(3) √(7/4) — same as √(70/40)</button>
+      <button class="ch-opt" onclick="checkAns(this,'wrong')" data-correct="false">(4) √(2/7)</button>
+    </div>
+
+    <div class="ch-btns">
+      <button class="ch-btn primary" id="startBtn" onclick="startChallenge()">▶ Start Timer</button>
+      <button class="ch-btn" id="resetBtn" onclick="resetChallenge()" style="display:none">↺ Try Again</button>
+    </div>
+
+    <div class="ch-result" id="chResult">
+      <div class="ch-result-text" id="chResultText"></div>
+      <div class="ch-explain">v<sub>rms</sub> = √(3RT/M). The mass ratio (2:1) is a distractor — it does not affect v<sub>rms</sub>. Only molecular mass M matters.<br><br>
+      v<sub>rms</sub>(Ar)/v<sub>rms</sub>(Cl₂) = √(M<sub>Cl₂</sub>/M<sub>Ar</sub>) = √(70/40) = √(7/4).<br><br>
+      <strong style="color:#f87171">The trap:</strong> Students tried to use the mass ratio 2:1 in the calculation. It is completely irrelevant to v<sub>rms</sub>.</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="ft-brand">Calibre Edge</div>
+  <div class="ft-tag">Sharpen Your Edge. Own the Exam.</div>
+
+  <div class="ft-cta">
+    <div class="ft-cta-title">Join the Free Telegram Batch</div>
+    <div class="ft-cta-sub">Daily practice problems · Chapter-wise strategy · Personalised doubt solving</div>
+    <a href="https://t.me/+--qGzFpibjJiN2Y1" target="_blank" class="ft-cta-btn">Join Free on Telegram →</a>
+  </div>
+
+  <div class="social-row">
+    <a href="https://www.instagram.com/caliber_edge.in_neet?igsh=Z2ttMnVrYXc4bzQ2" target="_blank" class="soc-btn">
+      <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+      Instagram
+    </a>
+    <a href="https://www.youtube.com/@CaliberEdge" target="_blank" class="soc-btn">
+      <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+      YouTube
+    </a>
+    <a href="https://t.me/+--qGzFpibjJiN2Y1" target="_blank" class="soc-btn">
+      <svg viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+      Telegram
+    </a>
+  </div>
+
+  <div class="ft-copy">© 2026 Calibre Edge · NEET 2026 Physics Analysis · All Rights Reserved</div>
+</footer>
+
+<script>
+// ── BAR ANIMATIONS ──
+const barObserver = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if(e.isIntersecting){
+      const w = e.target.getAttribute('data-w');
+      if(w) e.target.style.width = w;
+      barObserver.unobserve(e.target);
+    }
+  });
+},{threshold:0.1});
+document.querySelectorAll('.bar-fill[data-w]').forEach(b => barObserver.observe(b));
+
+// ── COUNTER ANIMATIONS ──
+const countObserver = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if(e.isIntersecting && !e.target.dataset.done){
+      e.target.dataset.done = '1';
+      const target = parseInt(e.target.getAttribute('data-target'));
+      if(!isNaN(target)){
+        let c = 0; const step = Math.max(1, Math.floor(target/25));
+        const t = setInterval(() => {
+          c = Math.min(c + step, target);
+          e.target.textContent = c;
+          if(c >= target) clearInterval(t);
+        }, 40);
+      }
+    }
+  });
+},{threshold:0.6});
+document.querySelectorAll('.stat-val[data-target]').forEach(c => countObserver.observe(c));
+
+// ── ACCORDION ──
+function toggleAcc(row){
+  const detail = row.nextElementSibling;
+  const isOpen = row.classList.contains('open');
+  // close all
+  document.querySelectorAll('.acc-row.open').forEach(r => {
+    r.classList.remove('open');
+    r.nextElementSibling.style.display = 'none';
+  });
+  if(!isOpen){
+    row.classList.add('open');
+    detail.style.display = 'table-row';
+  }
+}
+
+// ── STUDENT FILTER ──
+const filterData = {
+  all:{
+    head:'All Students — Full Analysis Below',
+    color:'var(--gold-lt)',
+    body:'You are viewing the complete analysis. Select your student type above to see a personalized focus summary.',
+    tags:[]
+  },
+  dropper:{
+    head:'🔁 Dropper — Your Battle Plan',
+    color:'var(--purple)',
+    body:'You have studied every chapter. Your enemy is interpretation errors and pressure-induced mistakes — not knowledge gaps. In 2026, the hardest questions were Semiconductor multi-diode, capacitor network, and the Metre bridge conceptual trap. These are dropper traps. Your focus: question-type pattern recognition at speed, not re-reading chapters.',
+    tags:['Current Electricity (4Q)','Semiconductor (2 Hard)','Wave Optics trap','Capacitor energy loss','Metre bridge concept','Motion in Plane (returns 2027)']
+  },
+  fresher:{
+    head:'🌱 Fresher — Your 5-Chapter Launch Plan',
+    color:'var(--green)',
+    body:'12 questions in 2026 were straightforward. That is 48 marks secured before touching a single hard question. Your first mission: master the easy-bucket chapters so fast and completely that you never drop a mark there. Then build upward into medium difficulty. Do not attempt hard questions until medium is solid.',
+    tags:['Units & Measurement','Laws of Motion','Gravitation','Work-Energy-Power','Thermodynamics','Alternating Current (easy Qs)']
+  },
+  average:{
+    head:'📈 Stuck at 120–160 — Break Through Here',
+    color:'var(--gold)',
+    body:'You are already solving easy questions. The 23 medium questions are your entire battleground. In 2026 they came from Current Electricity, Moving Charges, Ray Optics, Oscillations, and Motion in Straight Line. Stop chasing hard questions. Master medium ones with speed and accuracy. Your problem is not knowledge — it is speed and question-reading habits.',
+    tags:['Current Electricity (4Q)','Moving Charges & Magnetism','Oscillations graphs','Motion in Straight Line','Ray Optics (prism)','Kinetic Theory']
+  }
+};
+
+function setFilter(type, btn){
+  document.querySelectorAll('.f-btn').forEach(b => b.className = 'f-btn');
+  btn.classList.add('active-' + type);
+  const d = filterData[type];
+  const r = document.getElementById('filterResult');
+  const tagsHtml = d.tags.length ? `<div class="fr-tags">${d.tags.map(t=>`<span class="fr-tag">${t}</span>`).join('')}</div>` : '';
+  r.innerHTML = `<div class="fr-head" style="color:${d.color}">${d.head}</div><div class="fr-body">${d.body}</div>${tagsHtml}`;
+}
+
+// ── 67-SEC CHALLENGE ──
+let timer = null, timeLeft = 67, started = false, answered = false;
+
+function startChallenge(){
+  if(started) return;
+  started = true;
+  document.getElementById('startBtn').style.display = 'none';
+  document.getElementById('resetBtn').style.display = 'inline-block';
+  const display = document.getElementById('timerDisplay');
+  timer = setInterval(() => {
+    timeLeft--;
+    display.textContent = timeLeft;
+    if(timeLeft <= 20) display.className = 'ch-timer warn';
+    if(timeLeft <= 10) display.className = 'ch-timer danger';
+    if(timeLeft <= 0){
+      clearInterval(timer);
+      if(!answered) showResult(false, true);
+    }
+  }, 1000);
+}
+
+function checkAns(btn, result){
+  if(!started || answered) return;
+  answered = true;
+  clearInterval(timer);
+  const timeTaken = 67 - timeLeft;
+  if(result === 'correct'){
+    btn.classList.add('correct');
+    showResult(true, false, timeTaken);
+  } else {
+    btn.classList.add('wrong');
+    document.querySelectorAll('.ch-opt').forEach(b => {
+      if(b.dataset.correct === 'true') b.classList.add('correct');
+    });
+    showResult(false, false, timeTaken);
+  }
+}
+
+function showResult(correct, timeout, timeTaken){
+  const res = document.getElementById('chResult');
+  const txt = document.getElementById('chResultText');
+  res.classList.add('show');
+  if(timeout){
+    txt.style.color = '#f87171';
+    txt.textContent = "Time's up. This is exactly what happens in the exam hall.";
+  } else if(correct){
+    txt.style.color = 'var(--green)';
+    txt.textContent = `Correct! You answered in ${timeTaken} seconds${timeTaken < 67 ? ' — ' + (67-timeTaken) + ' seconds saved.' : '.'}`;
+  } else {
+    txt.style.color = '#f87171';
+    txt.textContent = 'Wrong answer. Read the explanation below carefully.';
+  }
+}
+
+function resetChallenge(){
+  clearInterval(timer);
+  timeLeft = 67; started = false; answered = false;
+  document.getElementById('timerDisplay').textContent = '67';
+  document.getElementById('timerDisplay').className = 'ch-timer';
+  document.getElementById('startBtn').style.display = 'inline-block';
+  document.getElementById('resetBtn').style.display = 'none';
+  document.querySelectorAll('.ch-opt').forEach(b => b.className = 'ch-opt');
+  document.getElementById('chResult').classList.remove('show');
+}
+
+// ── SMOOTH NAV ──
+document.querySelectorAll('.nav-link').forEach(l => {
+  l.addEventListener('click', e => {
+    e.preventDefault();
+    const el = document.querySelector(l.getAttribute('href'));
+    if(el) el.scrollIntoView({behavior:'smooth',block:'start'});
+  });
+});
+</script>
+</body>
+</html>
